@@ -1,0 +1,22 @@
+.side_bar-left {
+  width: 220px;
+  position: absolute;
+  left: 0;
+  top: 70px;
+}
+
+.side_bar-left .side_bar-top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+  padding: 15px 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+/*# sourceMappingURL=SideBar.css.map */

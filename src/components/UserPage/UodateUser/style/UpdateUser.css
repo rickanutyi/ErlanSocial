@@ -1,0 +1,62 @@
+.update_user {
+  max-width: 1000px;
+  margin: 20px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+  padding-top: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.update_user .change_users_photo {
+  margin: 0 auto;
+  width: 200px;
+  text-align: center;
+}
+
+.update_user .change_users_photo label {
+  font-size: 1.4rem;
+}
+
+.update_user .change_users_photo img {
+  height: 100px;
+}
+
+.update_user .change_users_photo input {
+  display: none;
+}
+
+.update_user .change_name {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.update_user .change_name input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.update_user .save_updates {
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.update_user .save_updates button {
+  width: 50%;
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=UpdateUser.css.map */

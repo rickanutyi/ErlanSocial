@@ -1,0 +1,96 @@
+.create_post {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.create_post .create_post_form {
+  width: 1000px;
+  height: 500px;
+  border: 20xp solid black;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.create_post .create_post_form input {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: -50px;
+  border-radius: 20px;
+  outline: none;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.create_post .create_post_form textarea {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: left;
+  outline: none;
+}
+
+.create_post .create_post_form .addPhoto {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.create_post .create_post_form .addPhoto input {
+  display: none;
+}
+
+.create_post .tags {
+  width: 1000px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.create_post button {
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+/*# sourceMappingURL=CreatePost.css.map */

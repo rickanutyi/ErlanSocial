@@ -1,0 +1,54 @@
+.post_card {
+  width: 682px;
+  // height: 542px;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  border: 1px solid rgb(182, 174, 174);
+
+  .card_title {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    h2 {
+      font-family: sans-serif;
+    }
+  }
+  .author {
+    padding: 6px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    img {
+      width: 20px;
+    }
+  }
+  .card_image {
+    width: 100%;
+    height: 350px;
+    // position: absolute;
+    // bottom: 0;
+    text-align: center;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      //   object-position: center;
+      position: relative;
+      bottom: 0;
+    }
+  }
+  .card_text {
+    padding: 0 20px;
+    height: 75px;
+    overflow: hidden;
+    line-height: 24px;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}

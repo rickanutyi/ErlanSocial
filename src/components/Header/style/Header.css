@@ -1,0 +1,108 @@
+.header {
+  width: 100%;
+}
+
+.header_content {
+  width: 100%;
+  height: 70px;
+  background-color: #123980;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header_content .header-left {
+  padding: 0 10px;
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header_content .header-left img {
+  width: 170px;
+}
+
+.header_content .header-left .searche {
+  width: 300px;
+  color: #fff;
+}
+
+.header_content .header-left .searche input {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  font-size: 1.2em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.header_content .header-left .searche input:hover {
+  background-color: #fff;
+  color: black;
+}
+
+.header_content .header-right {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 30px;
+}
+
+.header_content .header-right .user_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 200px;
+  gap: 10px;
+}
+
+.header_content .header-right .user_items span {
+  text-transform: uppercase;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header_content .header-right .user_items .header_avatar {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(248, 247, 247, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 50px;
+      flex-basis: 50px;
+  gap: 10px;
+}
+
+.header_content .header-right .user_items .header_avatar img {
+  height: 100%;
+}
+/*# sourceMappingURL=Header.css.map */
