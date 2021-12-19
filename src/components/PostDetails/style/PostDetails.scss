@@ -1,0 +1,23 @@
+.details {
+  width: 100%;
+  .details_content {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 50px;
+    box-sizing: border-box;
+    background-color: #fff;
+    .details-flex {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      div {
+        width: 100%;
+        text-align: center;
+      }
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
