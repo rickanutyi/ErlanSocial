@@ -43,7 +43,7 @@ const PostsContextProvider = ({children}) => {
             querySnapshot.forEach((doc) => {
                 postsList.push({...doc.data()})
             });
-            console.log(postsList)
+            // console.log(postsList)
             dispatch({
                 type: GET_POSTS,
                 payload: postsList
@@ -90,6 +90,14 @@ const PostsContextProvider = ({children}) => {
 
     }
 
+    //add comment
+    function updatePost(comments,pid){
+        let postsRef = doc(db,'posts',`${pid}`)
+        updateDoc(postsRef,{
+            comments: comments
+        })
+    }
+
     const values = {
         addIdPost,
         posts: state.posts,
@@ -97,7 +105,8 @@ const PostsContextProvider = ({children}) => {
         getUsersPosts,
         usersPosts: state.usersPosts,
         currentPost: state.currentPost,
-        getCurrentPost
+        getCurrentPost,
+        updatePost
     }
     return <postsContext.Provider value = {values}>{children}</postsContext.Provider>
 }

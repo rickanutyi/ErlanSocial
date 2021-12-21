@@ -19,5 +19,52 @@
         max-width: 100%;
       }
     }
+    .post_comments {
+      .ab_user {
+        cursor: pointer;
+      }
+      > span {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        &:nth-child(1) {
+          color: red;
+          margin-top: 10px;
+        }
+        .user_avatar_comment {
+          width: 40px;
+          height: 40px;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          border: 1px solid black;
+          margin-right: 5px;
+          img {
+            width: 100%;
+            border-radius: 5px;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.post_author {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  .user_avatar_comment {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    margin-right: 5px;
+    img {
+      width: 100%;
+      border-radius: 5px;
+      height: 100%;
+    }
   }
 }

@@ -5,23 +5,38 @@ import { usersContext } from '../../../Contexts/UserContext';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../../firebase';
 import { getUserId } from '../../Auth/saveThisUser';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../../Contexts/AuthContext';
 
 
 const UpdateUser = () => {
-    const {updateUser,thisUser,getThisUser} = useContext(usersContext)
+    const {updateUser,thisUser,getUsers,users} = useContext(usersContext)
     // const [userAvatar,setUserAvatar] = useState('')
-    const [userName,setUserName] = useState('')
+    const [usern,setUser] = useState('')
+    const {user,handleLogOut} = useAuth()
 
+    // useEffect(()=>{
+    //     getThisUser(getUserId())
 
+    // },[])
+    // useEffect(()=>{
+    //     setUserName(thisUser.name)
+    //     console.log(userName)
+    // },[thisUser])
     useEffect(()=>{
-        getThisUser(getUserId())
-
+        getUsers()
     },[])
+
     useEffect(()=>{
-        setUserName(thisUser.name)
-        console.log(userName)
-    },[thisUser])
- 
+
+        users.forEach(elem => {
+            if(elem.email === user.email){
+                setUser(elem)
+            }
+        })
+    },[users])
+
+
     const changePhoto = async () => {
         if(!document.querySelector('.change_photo')) return
         const input = document.querySelector('.change_photo')
@@ -35,9 +50,9 @@ const UpdateUser = () => {
             getDownloadURL(uploadTask.snapshot.ref).then(res=>{
                 let changes = {
                     img: res,
-                    name: userName,
+                    name: usern.name,
                 }
-                updateUser(thisUser.id,changes)
+                updateUser(usern.id,changes)
             })
         })      
     }
@@ -51,7 +66,7 @@ const UpdateUser = () => {
                 <label htmlFor='file' className='label_change'><img src={ReplacePhoto}/><br /> изменить аватарку</label>
             </div>
             <div className="change_name">
-                <input type="text" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
+                <input type="text" value={usern.name} onChange={(e)=>setUser({...usern,name: e.target.value})}/>
             </div>
             <div className="save_updates"><button onClick={changePhoto}>save</button></div>
         </div>

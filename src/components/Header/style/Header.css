@@ -103,6 +103,10 @@
 }
 
 .header_content .header-right .user_items .header_avatar img {
-  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 /*# sourceMappingURL=Header.css.map */

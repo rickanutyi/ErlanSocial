@@ -1,0 +1,25 @@
+.comments {
+  width: 100%;
+}
+
+.comments .comment_list {
+  width: 100%;
+  min-height: 140px;
+}
+
+.comments .add_comment {
+  width: 100%;
+}
+
+.comments .add_comment input {
+  width: 70%;
+  height: 50px;
+  padding: 10px;
+}
+
+.comments .add_comment button {
+  width: 30%;
+  height: 50px;
+  padding: 10px;
+}
+/*# sourceMappingURL=PostComments.css.map */

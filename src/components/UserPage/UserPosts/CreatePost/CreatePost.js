@@ -1,3 +1,4 @@
+
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useContext, useEffect, useState } from 'react';
@@ -6,20 +7,30 @@ import { postsContext } from '../../../../Contexts/PostsContext';
 import { usersContext } from '../../../../Contexts/UserContext';
 import { db, storage } from '../../../../firebase';
 import { getUserId } from '../../../Auth/saveThisUser';
-import './style/CreatePost.css'
+import { useAuth } from '../../../../Contexts/AuthContext';
+import './style/CreatePost.css';
+import Avatar from '../../../../images/icons/author-icon.png'
 
 const CreatePost = () => {
     const [postTitle,setPostTitle] = useState('')
     const [postText,setPostText] = useState('')
-    
-    const {getThisUser,thisUser} = useContext(usersContext)
+    const [usern,setUser] = useState({})
+    const {getThisUser,thisUser,users,getUsers} = useContext(usersContext)
+    const {user} = useAuth()
     const {addIdPost} = useContext(postsContext)
 
     const navigate = useNavigate()
 
     useEffect(()=>{
-        getThisUser(getUserId())
+        getUsers()
     },[])
+    useEffect(()=>{
+        users.forEach(elem=>{
+            if(elem.email===user.email){
+                setUser(elem)
+            }
+        })
+    },[users])
 
     const checkbox = document.querySelectorAll('.tagsinp')
     const createPost = async () => {
@@ -54,11 +65,12 @@ const CreatePost = () => {
                     text: postText,
                     tags: tags2,
                     image: res,
-                    author: thisUser.name?thisUser.name:thisUser.email,
-                    authorId: getUserId(),
+                    author: usern.name?usern.name:usern.email,
+                    authorId: usern.id,
                     date: today,
                     comments: [],
-                    likes: []
+                    likes: [],
+                    authorAvatar: usern.avatar?usern.avatar:null
                 })
                 addIdPost(data.id)
             })
@@ -85,6 +97,7 @@ const CreatePost = () => {
                     <input value='job' className='tagsinp' type="checkbox" id='job' name='tags' /> <label htmlFor="job">Работа</label>
                     <input value='business' className='tagsinp' type="checkbox" id='business' name='tags' /> <label htmlFor="business">Бизнес</label>
             </div>
+            
                 <button onClick={createPost}>добавить</button><button onClick={()=>navigate('/user-page')}>закрыть</button>
         </div>
     );
