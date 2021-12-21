@@ -12,6 +12,7 @@ import PostsContextProvider from "./Contexts/PostsContext";
 import CreatePost from "./components/UserPage/UserPosts/CreatePost/CreatePost";
 import PostsCard from "./components/PostsCard/PostsCard";
 import PostDetails from "./components/PostDetails/PostDetails";
+import SearchPost from "./components/searchPost/SearchPost";
 
 
 function MainRoutes (){
@@ -30,6 +31,7 @@ return(
             <Route path='/post-card' element={<PostsCard/>}/>
             <Route path='/Login' element={<Login/>}/>
             <Route path='/post-details/:id' element={<PostDetails/>}/>
+            <Route path='/search' element={<SearchPost/>}/>
         </Routes>
     </BrowserRouter>
     </UsersContextProvider>

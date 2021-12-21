@@ -27,11 +27,61 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   gap: 5px;
+}
+
+.post_card .author .post_actions {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.post_card .author .post_actions .action_item {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post_card .author .post_actions .action_item img {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.post_card .author .post_actions .comments_icon {
+  position: relative;
+}
+
+.post_card .author .post_actions .comments_icon .comments-count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00f514;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  color: #f8faf6;
 }
 
 .post_card .author span {

@@ -6,12 +6,14 @@ import { usersContext } from '../../Contexts/UserContext';
 import { getUserId } from '../Auth/saveThisUser';
 import MainLogo from "../../images/image_3-removebg-preview.png"
 import Messages from '../../images/icons/messages.png'
+import SearchPost from '../searchPost/SearchPost';
 
 const Header = () => {
     const {user,handleLogOut} = useAuth()
     const {thisUser,getThisUser,getUsers,users} = useContext(usersContext)
     const navigate = useNavigate()
     const [userm,setUser] = useState({})
+    const [searching,setSearching] = useState('')
     // console.log(user)
 
     useEffect(()=>{
@@ -33,7 +35,11 @@ const Header = () => {
                 <div className="header_content">
                     <div className="header-left">
                         <img onClick={()=>navigate('/')} src={MainLogo} alt="" />
-                        <div className="searche"><input type="text" placeholder='поиск'/></div>
+                        <div className="searche">
+                            <input type="text" placeholder='поиск' onChange={(e)=>setSearching(e.target.value)}/>
+                            {searching?<SearchPost searching={searching} setSearching={setSearching}/>:null}
+                        </div>
+                        
                     </div>
                     <div className="header-right">
                         {userm?
