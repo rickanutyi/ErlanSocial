@@ -68,7 +68,7 @@ useEffect(()=>{
 
     return (
         <div  className='post_card'>
-            <div className="author">
+            <div onClick={()=>navigate(`/ather-user/${elem.authorId}`)} className="author">
                <div> <span><img src={elem.authorAvatar?elem.authorAvatar:AuthorIcon} alt="" />
                 {elem.author}</span>
                 

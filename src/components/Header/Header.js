@@ -47,7 +47,7 @@ const Header = () => {
                              <div className="header_avatar">
                                  <img src={Messages} alt="" />
                              </div>
-                             <div onClick={()=>navigate('/user-page')} className='header_avatar'>
+                             <div onClick={()=>navigate('/user-page/posts')} className='header_avatar'>
                                    <img src={userm?userm.avatar:null} alt="" />
                               </div>
                         </div>:

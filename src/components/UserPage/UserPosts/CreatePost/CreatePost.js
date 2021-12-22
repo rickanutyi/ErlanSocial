@@ -70,7 +70,9 @@ const CreatePost = () => {
                     date: today,
                     comments: [],
                     likes: [],
-                    authorAvatar: usern.avatar?usern.avatar:null
+                    authorAvatar: usern.avatar?usern.avatar:null,
+                    date2: Date.now(),
+                    
                 })
                 addIdPost(data.id)
             })
@@ -98,7 +100,7 @@ const CreatePost = () => {
                     <input value='business' className='tagsinp' type="checkbox" id='business' name='tags' /> <label htmlFor="business">Бизнес</label>
             </div>
             
-                <button onClick={createPost}>добавить</button><button onClick={()=>navigate('/user-page')}>закрыть</button>
+                <button onClick={createPost}>добавить</button><button onClick={()=>navigate('/user-page/posts')}>закрыть</button>
         </div>
     );
 };

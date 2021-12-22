@@ -1,0 +1,45 @@
+.ather_user {
+  max-width: 1100px;
+  background-color: #fff;
+  margin: 0 auto;
+  display: flex;
+  &-left {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .ather_user_avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      border: 1px solid black;
+      overflow: hidden;
+      text-align: center;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+    .ather_user_name {
+      color: black;
+      font-size: 2rem;
+    }
+  }
+  .ather_user-right {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    .send_message {
+      display: flex;
+      width: 150px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+    }
+  }
+}

@@ -15,3 +15,6 @@ body {
   max-height: 100vh;
   /* overflow: hidden; */
 }
+html::-webkit-scrollbar {
+  width: 0;
+}

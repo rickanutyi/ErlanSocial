@@ -13,6 +13,8 @@ import CreatePost from "./components/UserPage/UserPosts/CreatePost/CreatePost";
 import PostsCard from "./components/PostsCard/PostsCard";
 import PostDetails from "./components/PostDetails/PostDetails";
 import SearchPost from "./components/searchPost/SearchPost";
+import AtherUser from "./components/AtherUser/AtherUser";
+import SendMessage from "./components/SendMessage/SendMessage";
 
 
 function MainRoutes (){
@@ -25,7 +27,9 @@ return(
     <Header/>
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/user-page' element={<UserPage/>}/>
+            <Route path='/user-page/*' element={<UserPage/>}/>
+            <Route path='/send-message' element={<SendMessage/>}/>
+            <Route path='/ather-user/:id' element={<AtherUser/>}/>
             <Route path='/update-user' element={<UpdateUser/>}/>
             <Route path='/create-post' element={<CreatePost/>}/>
             <Route path='/post-card' element={<PostsCard/>}/>

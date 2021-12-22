@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../Contexts/AuthContext';
 import { postsContext } from '../../Contexts/PostsContext';
 import { usersContext } from '../../Contexts/UserContext';
@@ -14,6 +14,7 @@ const PostDetails = () => {
     const [usern,setUser] = useState('')
 
     let params = useParams().id
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getCurrentPost(params)
@@ -52,7 +53,7 @@ const PostDetails = () => {
                     <div className="details_titl"><h2>{currentPost[0]?currentPost[0].title:null}</h2></div>
                     <div className="details_img"><img src={currentPost[0]?currentPost[0].image:null} alt="" /></div>
                     <div className="details_text">{currentPost[0]?currentPost[0].text:null}</div>
-                    <div className="post_author">
+                    <div className="post_author" onClick={()=>navigate(`/ather-user/${currentPost[0].authorId}`)}>
                         <span className='user_avatar_comment'><img src={currentPost[0]?currentPost[0].authorAvatar:null} alt="" /></span>
                         {currentPost[0]?currentPost[0].author:null}
                     </div>

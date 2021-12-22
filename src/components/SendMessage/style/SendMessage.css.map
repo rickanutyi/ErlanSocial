@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,SAAS,EAAE,MAAM;EACjB,MAAM,EAAE,kBAAkB;EAC1B,gBAAgB,EAAE,IAAI;EACtB,MAAM,EAAE,MAAM;CAKf;;AATD,AAKE,QALM,CAKN,aAAa,CAAC;EACZ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,GAAG;CACZ",
+    "sources": [
+        "SendMessage.scss"
+    ],
+    "names": [],
+    "file": "SendMessage.css"
+}

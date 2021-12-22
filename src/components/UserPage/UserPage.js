@@ -2,33 +2,41 @@ import React, { useContext, useEffect, useState } from 'react';
 import './style/UserPage.css'
 import { useAuth } from '../../Contexts/AuthContext';
 import { usersContext } from '../../Contexts/UserContext';
-import { getUserId } from '../Auth/saveThisUser';
 import UserPosts from './UserPosts/UserPosts';
+import { Link, Outlet, Route, Routes } from 'react-router-dom';
 //icons
 import Settings from '../../images/icons/setting.svg'
 import Monster from '../../images/icons/monster.png'
-import { useNavigate } from 'react-router-dom';
-import { postsContext } from '../../Contexts/PostsContext';
-import PostsCard from '../PostsCard/PostsCard';
+import { useNavigate, useParams } from 'react-router-dom';
 import Saved from './Saved/Saved';
+import Messages from './Messages/Messages';
+import Subscriptions from './Subscriptions/Subscriptions';
 
 
 const UserPage = () => {
     const {user,handleLogOut} = useAuth()
     const {getThisUser,thisUser,users,getUsers} = useContext(usersContext)
-    const {getUsersPosts,usersPosts} = useContext(postsContext)
+    // const {getUsersPosts,usersPosts} = useContext(postsContext)
+    
+    const navigate = useNavigate()
+    const params = useParams()
 
     const [userm,setUser] = useState({})
-    const navigate = useNavigate()
+    
 
+ 
 
     let span = document.querySelectorAll('.inactive')
 //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     function changeStatus (e){
         span.forEach(elem=>{
             elem.classList.remove('active')
+            // console.log(elem.parentElement)
         })
+        // e.currentTarget.parentNode.classList.add('active')
         e.currentTarget.classList.add('active')
+        // console.log(e.currentTarget.parentNode)
+
     }
 //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     useEffect(()=>{
@@ -50,7 +58,7 @@ const UserPage = () => {
         handleLogOut()
         navigate('/')
     }
-   
+//    console.log(Date.now())
     return (
         <div className='user_page'>
             <div className="user_content">
@@ -71,14 +79,18 @@ const UserPage = () => {
                     </div>
                 </div>
                 <div className="user_menu">
-                    <span className='active inactive' onClick={changeStatus}>статьи</span>
-                    <span className='inactive' onClick={changeStatus}>сообщения</span>
-                    <span className='inactive' onClick={changeStatus}>подписки</span>
-                    <span className='inactive' onClick={changeStatus}>сохраненные</span>
+                    <Link onClick={(e)=>changeStatus(e,'pos')} className='active inactive' to='posts'><span  >статьи</span></Link>
+                    <Link onClick={(e)=>changeStatus(e,'sav')} className='inactive' to='messages'><span  >сообщения</span></Link>
+                    <Link onClick={(e)=>changeStatus(e,'sav')} className='inactive' to='subscription'><span  >подписки</span></Link>
+                    <Link onClick={(e)=>changeStatus(e,'sav')} className='inactive' to='saved'><span >сохраненные</span></Link>
                 </div>
             </div>
-            {/* <UserPosts usern={userm}/> */}
-            <Saved usern={userm}/>
+            <Routes>
+                <Route path='posts' element={<UserPosts usern={userm}/>}/>
+                <Route path='saved' element={<Saved usern={userm}/>}/>
+                <Route path='messages' element={<Messages/>}/>
+                <Route path='subscriptions' element={<Subscriptions/>}/>
+            </Routes>
         </div>
     );
 };
