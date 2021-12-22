@@ -1,17 +1,21 @@
 import React, { useContext, useEffect } from 'react';
 import { postsContext } from '../../../Contexts/PostsContext';
+import { usersContext } from '../../../Contexts/UserContext';
 import PostsCard from '../../PostsCard/PostsCard';
 import './style/UserPosts.css'
 
-const UserPosts = () => {
-    const {posts,getPosts} = useContext(postsContext)
+const UserPosts = ({usern}) => {
+    const {posts,usersPosts,getUsersPosts} = useContext(postsContext)
+    const {} = useContext(usersContext)
+
+
     useEffect(()=>{
-        getPosts()
-    },[])
+        getUsersPosts(usern.id)
+    },[usern])
     return (
         <div className='user_posts'>
-           {posts?posts.map(elem=>(
-               <PostsCard key = {elem.id} elem={elem}/>
+           {usersPosts?usersPosts.map(elem=>(
+               <PostsCard key = {elem.id} elem={elem} usern={usern}/>
            )):
             <div className="posts_title">
                 <p>Если у вас есть интересная идея для статьи, не стесняйтесь <br /> и скорее начинайте писать</p>

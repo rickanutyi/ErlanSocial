@@ -53,7 +53,7 @@ const PostsContextProvider = ({children}) => {
     //wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
     
     const getUsersPosts = (id) => {
-        console.log(id)
+        // console.log(id)
         onSnapshot(q,(querySnapshot)=>{
             const postsList = [];
 
@@ -63,7 +63,7 @@ const PostsContextProvider = ({children}) => {
                     postsList.push({...doc.data()})
                 }
             });
-            console.log(postsList)
+            // console.log(postsList)
             dispatch({
                 type: GET_USERS_POSTS,
                 payload: postsList
@@ -97,6 +97,14 @@ const PostsContextProvider = ({children}) => {
             comments: comments
         })
     }
+    // like post
+    function likePost(newLike,pid){
+        let postRef = doc(db,'posts',`${pid}`)
+        updateDoc(postRef,{
+            likes: newLike 
+        })
+    }
+
 
     const values = {
         addIdPost,
@@ -106,7 +114,8 @@ const PostsContextProvider = ({children}) => {
         usersPosts: state.usersPosts,
         currentPost: state.currentPost,
         getCurrentPost,
-        updatePost
+        updatePost,
+        likePost
     }
     return <postsContext.Provider value = {values}>{children}</postsContext.Provider>
 }

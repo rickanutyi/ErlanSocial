@@ -33,7 +33,7 @@ const UsersContextProvider = ({children}) =>{
             querySnapshot.forEach((doc) => {
                 usersList.push({...doc.data(),id:doc.id})
             });
-            console.log(usersList)
+            // console.log(usersList)
             dispatch({
                 type: GET_USERS,
                 payload: usersList
@@ -76,6 +76,14 @@ const UsersContextProvider = ({children}) =>{
             name: name
         })
     }
+    // saved d
+    function addPostToSaves(saves,uid){
+        let userRef = doc(db,'users',`${uid}`)
+        updateDoc(userRef,{
+            saved: saves
+        })
+    }
+
         const values = {
             users: state.users,
             getUsers,
@@ -84,6 +92,7 @@ const UsersContextProvider = ({children}) =>{
             thisUser: state.thisUser,
             updateUser,
             updateUserName,
+            addPostToSaves
         }
 
     return (

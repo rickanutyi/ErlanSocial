@@ -10,6 +10,7 @@ import Monster from '../../images/icons/monster.png'
 import { useNavigate } from 'react-router-dom';
 import { postsContext } from '../../Contexts/PostsContext';
 import PostsCard from '../PostsCard/PostsCard';
+import Saved from './Saved/Saved';
 
 
 const UserPage = () => {
@@ -22,36 +23,28 @@ const UserPage = () => {
 
 
     let span = document.querySelectorAll('.inactive')
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     function changeStatus (e){
         span.forEach(elem=>{
             elem.classList.remove('active')
         })
         e.currentTarget.classList.add('active')
     }
-
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     useEffect(()=>{
         getUsers()
     },[])
-
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     useEffect(()=>{
-
         users.forEach(elem => {
             if(elem.email === user.email){
                 setUser(elem)
             }
         })
     },[users])
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-
-
-    useEffect(()=>{
-        getUsersPosts(userm.id)
-    },[userm])
-
-    
-    
-    
+//;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     function out (){
         localStorage.removeItem('userID')
         handleLogOut()
@@ -81,19 +74,11 @@ const UserPage = () => {
                     <span className='active inactive' onClick={changeStatus}>статьи</span>
                     <span className='inactive' onClick={changeStatus}>сообщения</span>
                     <span className='inactive' onClick={changeStatus}>подписки</span>
-                    <span className='inactive' onClick={changeStatus}>комментарии</span>
+                    <span className='inactive' onClick={changeStatus}>сохраненные</span>
                 </div>
             </div>
-            <div className='user_posts'>
-                 {usersPosts?usersPosts.map(elem=>(
-                     <PostsCard key={elem.id} elem={elem}/>
-                  )):(
-                     <div className="posts_title">
-                      <p>Если у вас есть интересная идея для статьи, не стесняйтесь <br /> и скорее начинайте писать</p>
-                     <button>создать запись</button>
-                    </div>)}
-           
-            </div>
+            {/* <UserPosts usern={userm}/> */}
+            <Saved usern={userm}/>
         </div>
     );
 };

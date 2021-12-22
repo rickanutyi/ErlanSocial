@@ -24,7 +24,7 @@ const Header = () => {
         users.forEach(elem => {
             if(elem.email === user.email){
                 setUser(elem)
-                console.log(elem)
+                // console.log(elem)
             }
         })
     },[users])

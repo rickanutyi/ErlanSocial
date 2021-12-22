@@ -193,16 +193,4 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-
-.user_page .user_posts {
-  max-width: 1000px;
-  background-color: white;
-  border-radius: 20px;
-  margin: 0 auto;
-  margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 20px;
-}
 /*# sourceMappingURL=UserPage.css.map */
