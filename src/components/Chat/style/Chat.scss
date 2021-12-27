@@ -1,0 +1,37 @@
+.chat {
+  width: 100%;
+  width: 500px;
+  height: calc(100vh - 70px);
+  position: sticky;
+  right: 0;
+  // padding: 60px;
+  .chat_content {
+    width: 100%;
+    // overflow: hidden;
+    height: 90%;
+    background-color: #fff;
+    // border: 1px solid red;
+    margin: 0 auto;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+  }
+  .chat_actions {
+    // height: 10%;
+    width: 100%;
+    margin: 0 auto;
+    // border: 1px solid red;
+    input {
+      width: 70%;
+      height: 60px;
+      padding: 5px;
+    }
+    button {
+      width: 30%;
+      height: 60px;
+    }
+  }
+}

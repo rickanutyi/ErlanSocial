@@ -23,7 +23,6 @@
 .create_post .create_post_form {
   width: 1000px;
   height: 500px;
-  border: 20xp solid black;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,6 +30,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  border: none;
+  border-radius: 20px;
 }
 
 .create_post .create_post_form input {
@@ -41,16 +42,21 @@
   outline: none;
   padding: 20px;
   text-align: center;
-  border: 1px solid black;
+  border: none;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  font-size: 1.2rem;
 }
 
 .create_post .create_post_form textarea {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: none;
   padding: 30px;
   text-align: left;
   outline: none;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .create_post .create_post_form .addPhoto {
@@ -60,6 +66,7 @@
   padding: 10px;
   font-size: 1.2rem;
   font-weight: 600;
+  color: green;
 }
 
 .create_post .create_post_form .addPhoto input {
@@ -80,13 +87,17 @@
           align-items: center;
   gap: 20px;
   background-color: #fff;
-  border: 1px solid black;
+  border: none;
+  border-radius: 20px;
   margin-top: 20px;
 }
 
 .create_post button {
   width: 200px;
-  height: 30px;
+  height: 50px;
   margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
 }
 /*# sourceMappingURL=CreatePost.css.map */

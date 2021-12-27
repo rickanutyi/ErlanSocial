@@ -7,6 +7,36 @@
   border: 1px solid #b6aeae;
 }
 
+@media all and (max-width: 1050px) {
+  .post_card {
+    width: 500px;
+  }
+}
+
+@media all and (max-width: 880px) {
+  .post_card {
+    width: 400px;
+  }
+}
+
+@media all and (max-width: 770px) {
+  .post_card {
+    width: 300px;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .post_card {
+    width: 350px;
+  }
+}
+
+@media all and (max-width: 325px) {
+  .post_card {
+    width: 320px;
+  }
+}
+
 .post_card .card_title {
   width: 100%;
   padding: 10px;
@@ -108,6 +138,18 @@
   height: 350px;
   text-align: center;
   overflow: hidden;
+}
+
+@media all and (max-width: 880px) {
+  .post_card .card_image {
+    height: 340px;
+  }
+}
+
+@media all and (max-width: 770px) {
+  .post_card .card_image {
+    height: 260px;
+  }
 }
 
 .post_card .card_image img {

@@ -1,13 +1,14 @@
 import { collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/firestore";
 import React, { createContext, useReducer } from "react";
-import { GET_THIS_USER, GET_USERS } from "../conts/const";
+import { GET_CHAT, GET_THIS_USER, GET_USERS } from "../conts/const";
 import { db } from "../firebase";
 
 export const usersContext = createContext()
 
 const INIT_STATE = {
     users: [],
-    thisUser: {}
+    thisUser: {},
+    chat: []
 }
 
 const reducer = (state = INIT_STATE,action) => {
@@ -16,6 +17,8 @@ const reducer = (state = INIT_STATE,action) => {
             return {...state,users: action.payload};
         case GET_THIS_USER: 
             return {...state,thisUser: action.payload}
+        case GET_CHAT:
+            return {...state,chat: action.payload}
         default: return state
     }
 }
@@ -23,6 +26,7 @@ const reducer = (state = INIT_STATE,action) => {
 const UsersContextProvider = ({children}) =>{
     const [state,dispatch] = useReducer(reducer,INIT_STATE)
     const q = query(collection(db,'users'))
+    const qm = query(collection(db,'chat'))
 
 
 
@@ -84,6 +88,33 @@ const UsersContextProvider = ({children}) =>{
         })
     }
 
+    //send message
+    // function sendMessage(sid,gid,data){
+    //     let userRef = doc(db,'users',`${sid}`)
+    //     updateDoc(userRef,{
+    //         messages: data
+    //     })
+
+    //     let userRef2 = doc(db,'users',`${gid}`)
+    //     updateDoc(userRef2,{
+    //         messages
+    //     })
+    // }
+
+    function getChat (){                ////////////////////////////////////get users
+        onSnapshot(qm, (querySnapshot) => {
+            const chat = [];
+
+            querySnapshot.forEach((doc) => {
+                chat.push({...doc.data(),id:doc.id})
+            });
+            // console.log(usersList)
+            dispatch({
+                type: GET_CHAT,
+                payload: chat
+            })
+          });
+    }
         const values = {
             users: state.users,
             getUsers,
@@ -92,7 +123,9 @@ const UsersContextProvider = ({children}) =>{
             thisUser: state.thisUser,
             updateUser,
             updateUserName,
-            addPostToSaves
+            addPostToSaves,
+            getChat,
+            chat: state.chat
         }
 
     return (

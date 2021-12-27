@@ -3,6 +3,9 @@
   position: absolute;
   left: 0;
   top: 70px;
+  @media all and (max-width: 550px) {
+    display: none;
+  }
   .side_bar-top {
     width: 100%;
     display: flex;

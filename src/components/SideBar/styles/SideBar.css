@@ -5,6 +5,12 @@
   top: 70px;
 }
 
+@media all and (max-width: 550px) {
+  .side_bar-left {
+    display: none;
+  }
+}
+
 .side_bar-left .side_bar-top {
   width: 100%;
   display: -webkit-box;

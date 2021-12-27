@@ -1,6 +1,6 @@
 .Hero {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 70px);
   padding-top: 50px;
   padding-bottom: 100px;
   display: -webkit-box;
@@ -16,6 +16,14 @@
   overflow: scroll;
 }
 
+@media all and (max-width: 770px) {
+  .Hero {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+
 .Hero .hero_content {
   width: 1000px;
   display: -webkit-box;
@@ -27,5 +35,23 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 40px;
+}
+
+@media all and (max-width: 900px) {
+  .Hero .hero_content {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .Hero .hero_content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 0;
+    width: 100%;
+    gap: 10px;
+  }
 }
 /*# sourceMappingURL=Hero.css.map */

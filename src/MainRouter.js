@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter,Routes,Route, Router } from "react-router-dom";
-import Login from './components/Auth/Login'
-import Home from './components/Home/Home'
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import Login from "./components/Auth/Login";
+import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import App from "./App";
 import AuthContextProvider from "./Contexts/AuthContext";
@@ -15,33 +15,36 @@ import PostDetails from "./components/PostDetails/PostDetails";
 import SearchPost from "./components/searchPost/SearchPost";
 import AtherUser from "./components/AtherUser/AtherUser";
 import SendMessage from "./components/SendMessage/SendMessage";
+import Chat from "./components/Chat/Chat";
+import Menu from "./components/Menu/Menu";
+import SideBar from "./components/SideBar/SideBar";
 
-
-function MainRoutes (){
-
-return(
+function MainRoutes() {
+  return (
     <PostsContextProvider>
-    <AuthContextProvider>
-    <UsersContextProvider>
-    <BrowserRouter>
-    <Header/>
-        <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/user-page/*' element={<UserPage/>}/>
-            <Route path='/send-message' element={<SendMessage/>}/>
-            <Route path='/ather-user/:id' element={<AtherUser/>}/>
-            <Route path='/update-user' element={<UpdateUser/>}/>
-            <Route path='/create-post' element={<CreatePost/>}/>
-            <Route path='/post-card' element={<PostsCard/>}/>
-            <Route path='/Login' element={<Login/>}/>
-            <Route path='/post-details/:id' element={<PostDetails/>}/>
-            <Route path='/search' element={<SearchPost/>}/>
-        </Routes>
-    </BrowserRouter>
-    </UsersContextProvider>
-    </AuthContextProvider>
+      <AuthContextProvider>
+        <UsersContextProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/user-page/*" element={<UserPage />} />
+              <Route path="/send-message/:id" element={<SendMessage />} />
+              <Route path="/ather-user/:id" element={<AtherUser />} />
+              <Route path="/update-user" element={<UpdateUser />} />
+              <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/post-card" element={<PostsCard />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/post-details/:id" element={<PostDetails />} />
+              <Route path="/search" element={<SearchPost />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/side-bar" element={<SideBar />} />
+            </Routes>
+          </BrowserRouter>
+        </UsersContextProvider>
+      </AuthContextProvider>
     </PostsContextProvider>
-
-)
+  );
 }
-export default MainRoutes
+export default MainRoutes;

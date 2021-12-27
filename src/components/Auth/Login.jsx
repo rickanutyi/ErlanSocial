@@ -41,8 +41,9 @@ const Login = () => {
       friends: [],
       raiting: 0,
       userStatus: null,
-      messages: {},
+      messages: [],
       saved: [],
+      chats: [],
     });
     // console.log(data.id);
     handleSignUp();
