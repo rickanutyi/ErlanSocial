@@ -41,7 +41,7 @@ const Header = () => {
       {open ? <Menu setOpen={setOpen} /> : null}
       <div className="header_content">
         <div className="header-left">
-          <img onClick={() => navigate("/")} src={MainLogo} alt="" />
+          <img onClick={() => navigate("/home/hero")} src={MainLogo} alt="" />
           <div className="searche">
             <input
               type="text"
@@ -64,7 +64,7 @@ const Header = () => {
           {userm ? (
             <div className="user_items">
               <div className="header_avatar">
-                <img src={Messages} alt="" />
+                <img onClick={() => navigate("/chat")} src={Messages} alt="" />
               </div>
               <div
                 onClick={() => navigate("/user-page/posts")}

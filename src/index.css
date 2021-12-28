@@ -18,3 +18,41 @@ body {
 html::-webkit-scrollbar {
   width: 0;
 }
+.posts {
+  width: 100%;
+  height: calc(100vh - 70px);
+  padding-top: 50px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+.posts_content {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+@media all and (max-width: 900px) {
+  .posts_content {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .posts_content {
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+@media all and (max-width: 770px) {
+  .posts {
+    align-items: flex-end;
+  }
+}

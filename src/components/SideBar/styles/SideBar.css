@@ -1,5 +1,5 @@
 .side_bar-left {
-  width: 220px;
+  width: 240px;
   position: absolute;
   left: 0;
   top: 70px;
@@ -20,9 +20,17 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 20px;
-  padding: 15px 10px;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.side_bar-left .side_bar-top li {
+  width: 100%;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.side_bar-left .side_bar-top li:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=SideBar.css.map */

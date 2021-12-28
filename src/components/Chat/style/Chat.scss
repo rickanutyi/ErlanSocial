@@ -1,9 +1,10 @@
 .chat {
   width: 100%;
-  width: 500px;
+  width: 1000px;
   height: calc(100vh - 70px);
   position: sticky;
   right: 0;
+  margin: 0 auto;
   // padding: 60px;
   .chat_content {
     width: 100%;
