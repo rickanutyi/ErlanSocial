@@ -41,7 +41,7 @@ const Header = () => {
       {open ? <Menu setOpen={setOpen} /> : null}
       <div className="header_content">
         <div className="header-left">
-          <img onClick={() => navigate("/home/hero")} src={MainLogo} alt="" />
+          <img onClick={() => navigate("hero")} src={MainLogo} alt="" />
           <div className="searche">
             <input
               type="text"

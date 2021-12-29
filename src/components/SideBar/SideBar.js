@@ -18,34 +18,34 @@ const SideBar = ({ block }) => {
   return (
     <div style={block ? style : null} className="side_bar-left">
       <ul className="side_bar-top">
-        <li onClick={() => navigate("/home/popular")}>
+        <li onClick={() => navigate("popular")}>
           <img width="20px" src={Fire} alt="" /> Популярное
         </li>
-        <li onClick={() => navigate("/home/fresh")}>
+        <li onClick={() => navigate("fresh")}>
           <img width="20px" src={Fresh} alt="" /> Свежее
         </li>
-        <li onClick={() => navigate("/home/business")}>
+        <li onClick={() => navigate("business")}>
           <img width="20px" src={Business} alt="" /> Бизнес
         </li>
-        <li onClick={() => navigate("/home/story")}>
+        <li onClick={() => navigate("story")}>
           <img width="20px" src={Book} alt="" /> Личная история
         </li>
-        <li onClick={() => navigate("/home/tech")}>
+        <li onClick={() => navigate("tech")}>
           <img width="20px" src={Tech} alt="" /> Техника
         </li>
-        <li onClick={() => navigate("/home/programming")}>
+        <li onClick={() => navigate("programming")}>
           <img width="20px" src={Proger} alt="" /> Программирование
         </li>
-        <li onClick={() => navigate("/home/design")}>
+        <li onClick={() => navigate("design")}>
           <img width="20px" src={Design} alt="" /> Дизайн
         </li>
-        <li onClick={() => navigate("/home/sport")}>
+        <li onClick={() => navigate("sport")}>
           <img width="20px" src={Sport} alt="" /> Спорт
         </li>
-        <li onClick={() => navigate("/home/marketing")}>
+        <li onClick={() => navigate("marketing")}>
           <img width="20px" src={Marketing} alt="" /> Маркетинг
         </li>
-        <li onClick={() => navigate("/home/job")}>
+        <li onClick={() => navigate("job")}>
           <img width="20px" src={Job} alt="" /> Работа
         </li>
       </ul>

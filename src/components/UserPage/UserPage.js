@@ -107,7 +107,7 @@ const UserPage = () => {
           <Link
             onClick={(e) => changeStatus(e, "sav")}
             className="inactive"
-            to="subscription"
+            to="subscriptions"
           >
             <span>подписки</span>
           </Link>
@@ -124,7 +124,7 @@ const UserPage = () => {
         <Route path="posts" element={<UserPosts usern={userm} />} />
         <Route path="saved" element={<Saved usern={userm} />} />
         <Route path="messages" element={<Messages />} />
-        <Route path="subscriptions" element={<Subscriptions />} />
+        <Route path="subscriptions" element={<Subscriptions usern={userm} />} />
       </Routes>
     </div>
   );

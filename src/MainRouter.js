@@ -27,7 +27,7 @@ function MainRoutes() {
           <BrowserRouter>
             <Header />
             <Routes>
-              <Route path="/home/*" element={<Home />} />
+              <Route path="/*" element={<Home />} />
               <Route path="/user-page/*" element={<UserPage />} />
               <Route path="/send-message/:id" element={<SendMessage />} />
               <Route path="/ather-user/:id" element={<AtherUser />} />

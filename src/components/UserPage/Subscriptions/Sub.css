@@ -1,0 +1,38 @@
+.subscriptions {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.subscriptions .sub_item {
+  font-size: 1.2rem;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.subscriptions .sub_item:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.subscriptions .sub_item .sub {
+  margin-left: 30px;
+  color: green;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.subscriptions .sub_item .sub::after {
+  content: "+";
+}
+
+.subscriptions .sub_item .unsub {
+  color: red;
+  margin-left: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.subscriptions .sub_item .unsub::after {
+  content: "-";
+}
+/*# sourceMappingURL=Sub.css.map */

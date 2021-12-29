@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { postsContext } from "../../Contexts/PostsContext";
 import PostsCard from "../PostsCard/PostsCard";
 
-const Design = () => {
+const Design = ({ usern }) => {
   const { getPosts, posts } = useContext(postsContext);
 
   const [popular, setPopular] = useState([]);
@@ -12,15 +12,18 @@ const Design = () => {
   }, []);
 
   useEffect(() => {
-    let popular = posts.sort((a, b) => b.comments.length - a.comments.length);
-    setPopular(popular);
+    let popular = posts.filter((elem) => elem.tags.includes("design"));
+    let sortedPopular = popular.sort((a, b) => b.date2 - a.date2);
+    setPopular(sortedPopular);
   }, [posts]);
 
   return (
     <div className="posts">
       <div className="posts_content">
         {popular
-          ? popular.map((elem) => <PostsCard elem={elem} key={elem.id} />)
+          ? popular.map((elem) => (
+              <PostsCard elem={elem} key={elem.id} usern={usern} />
+            ))
           : null}
       </div>
     </div>

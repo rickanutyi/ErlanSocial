@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { postsContext } from "../../Contexts/PostsContext";
 import PostsCard from "../PostsCard/PostsCard";
 
-const Popular = () => {
+const Popular = ({ usern }) => {
   const { getPosts, posts } = useContext(postsContext);
 
   const [popular, setPopular] = useState([]);
@@ -23,7 +23,9 @@ const Popular = () => {
     <div className="posts">
       <div className="posts_content">
         {popular
-          ? popular.map((elem) => <PostsCard elem={elem} key={elem.id} />)
+          ? popular.map((elem) => (
+              <PostsCard elem={elem} key={elem.id} usern={usern} />
+            ))
           : null}
       </div>
     </div>
