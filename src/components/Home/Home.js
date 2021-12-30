@@ -29,16 +29,21 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    let us = users.filter((elem) => elem.email === user.email);
-    setUser(us[0]);
-  }, [users]);
-
-  useEffect(() => {
+    if (!user) {
+      navigate("login");
+    } else {
+      let us = users.filter((elem) => elem.email === user.email);
+      setUser(us[0]);
+      // console.log(us[0]);
+    }
     if (!params["*"]) {
       navigate("hero");
     }
-  }, []);
+  }, [users]);
 
+  // useEffect(() => {
+  //   setUser(usern);
+  // }, [params]);
   if (!user) {
     return <Login />;
   }

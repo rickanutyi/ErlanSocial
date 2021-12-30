@@ -18,6 +18,9 @@ import SendMessage from "./components/SendMessage/SendMessage";
 import Chat from "./components/Chat/Chat";
 import Menu from "./components/Menu/Menu";
 import SideBar from "./components/SideBar/SideBar";
+import AdvertisingCard from "./components/AdvertisingCard/AdvertisingCard";
+import Bot from "./Bot";
+import Paymant from "./components/Paymant/Paymant";
 
 function MainRoutes() {
   return (
@@ -27,6 +30,7 @@ function MainRoutes() {
           <BrowserRouter>
             <Header />
             <Routes>
+              <Route path="/Login" element={<Login />} />
               <Route path="/*" element={<Home />} />
               <Route path="/user-page/*" element={<UserPage />} />
               <Route path="/send-message/:id" element={<SendMessage />} />
@@ -34,12 +38,14 @@ function MainRoutes() {
               <Route path="/update-user" element={<UpdateUser />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/post-card" element={<PostsCard />} />
-              <Route path="/Login" element={<Login />} />
               <Route path="/post-details/:id" element={<PostDetails />} />
               <Route path="/search" element={<SearchPost />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/side-bar" element={<SideBar />} />
+              <Route path="/reclam" element={<AdvertisingCard />} />
+              {/* <Route path="/bot" element={<Bot />} /> */}
+              <Route path="/paymant" element={<Paymant />} />
             </Routes>
           </BrowserRouter>
         </UsersContextProvider>

@@ -1,0 +1,43 @@
+.reclam {
+  width: 682px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  color: #f6fcf6;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
+}
+
+.reclam .reclam_title {
+  font-size: 2.5rem;
+}
+
+.reclam .reclam_text {
+  font-size: 1.6rem;
+}
+
+.reclam .reclam_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.reclam .reclam_image img {
+  width: 100%;
+}
+/*# sourceMappingURL=AdvertisingCard.css.map */

@@ -82,13 +82,24 @@ const PostsCard = ({ elem, savePost, usern }) => {
         <div className="post_actions">
           <div className="action_item">
             {elem.likes ? (
-              <img
-                src={elem.likes.includes(user.email) ? Down : Up}
-                alt=""
-                onClick={addLike}
-              />
+              <>
+                {" "}
+                <span style={{ marginRight: "3px", color: "green" }}>
+                  {elem.likes.length}
+                </span>
+                <img
+                  src={elem.likes.includes(user.email) ? Down : Up}
+                  alt=""
+                  onClick={addLike}
+                />
+              </>
             ) : (
-              <img src={Up} alt="" onClick={addLike} />
+              <>
+                <span style={{ marginRight: "3px", color: "green" }}>
+                  {elem.likes.length}
+                </span>
+                <img src={Up} alt="" onClick={addLike} />
+              </>
             )}
           </div>
           <div className="action_item comments_icon">

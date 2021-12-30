@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./style/Header.css";
 import { useAuth } from "../../Contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { usersContext } from "../../Contexts/UserContext";
 import { getUserId } from "../Auth/saveThisUser";
 import MainLogo from "../../images/image_3-removebg-preview.png";
@@ -23,6 +23,7 @@ const Header = () => {
     setOpen(false);
   }, []);
   useEffect(() => {
+    if (!user) return;
     users.forEach((elem) => {
       if (elem.email === user.email) {
         setUser(elem);
@@ -41,7 +42,9 @@ const Header = () => {
       {open ? <Menu setOpen={setOpen} /> : null}
       <div className="header_content">
         <div className="header-left">
-          <img onClick={() => navigate("hero")} src={MainLogo} alt="" />
+          <Link to="hero">
+            <img src={MainLogo} alt="" />
+          </Link>
           <div className="searche">
             <input
               type="text"

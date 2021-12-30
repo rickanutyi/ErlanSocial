@@ -7,6 +7,7 @@ import { db } from "../../firebase";
 import { usersContext } from "../../Contexts/UserContext";
 import { saveUserId } from "./saveThisUser";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
   const {
@@ -53,9 +54,14 @@ const Login = () => {
 
   function login() {
     handleLogIn();
-    navigate("/");
+    navigate("/hero");
   }
 
+  useEffect(() => {
+    if (user) {
+      navigate("/hero");
+    }
+  });
   return (
     <div className="login">
       <div className="login_card">

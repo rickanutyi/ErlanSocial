@@ -8,9 +8,6 @@ import { useAuth } from "../../Contexts/AuthContext";
 const Hero = ({ usern }) => {
   // const {getUsers,users} = useContext(usersContext)
   const { posts, getPosts } = useContext(postsContext);
-  const { getUsers, users, addPostToSaves } = useContext(usersContext);
-  const { user } = useAuth();
-
   const [post, setPost] = useState([]);
 
   useEffect(() => {
@@ -29,9 +26,13 @@ const Hero = ({ usern }) => {
           }
         }
       });
+
       let sortSubPosts = subPosts.sort((a, b) => b.date2 - a.date2);
+      // let sortWithA = [];
+      // sortSubPosts.forEach((elem,index)=>{
+      // console.log(sortSubPosts);
+      // })
       setPost(sortSubPosts);
-      console.log(subPosts);
     } catch (errorn) {
       console.error();
     }
@@ -45,6 +46,7 @@ const Hero = ({ usern }) => {
   //         }
   //     })
   // },[users])
+  // console.log(post);
 
   return (
     <div className="Hero">
