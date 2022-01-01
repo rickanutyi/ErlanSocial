@@ -5,13 +5,14 @@ import { postsContext } from "../../Contexts/PostsContext";
 import { usersContext } from "../../Contexts/UserContext";
 import PostComments from "./PostComments/PostComments";
 import "./style/PostDetails.css";
+import AdvertisingCard from "../AdvertisingCard/AdvertisingCard";
 
 const PostDetails = () => {
   const { getCurrentPost, currentPost, updatePost } = useContext(postsContext);
   const { users, getUsers } = useContext(usersContext);
   const { user } = useAuth();
   const [message, setMessage] = useState("");
-  const [usern, setUser] = useState("");
+  const [usern, setUser] = useState({});
 
   let params = useParams().id;
   const navigate = useNavigate();
@@ -56,6 +57,9 @@ const PostDetails = () => {
           <div className="details_img">
             <img src={currentPost[0] ? currentPost[0].image : null} alt="" />
           </div>
+          {usern.premium ? null : (
+            <AdvertisingCard id={currentPost[0] ? currentPost[0].id : null} />
+          )}
           <div className="details_text">
             {currentPost[0] ? currentPost[0].text : null}
           </div>

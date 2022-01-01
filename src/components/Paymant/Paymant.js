@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
+import { usersContext } from "../../Contexts/UserContext";
 import "./Paymant.css";
 
 const Paymant = () => {
+  const { changeStatus, users, getUsers } = useContext(usersContext);
+  const { user } = useAuth();
+  const params = useParams();
+  const navigate = useNavigate();
   const [cardNum1, setCardNum1] = useState();
   const [cardNum2, setCardNum2] = useState();
   const [cardNum3, setCardNum3] = useState();
@@ -14,9 +22,21 @@ const Paymant = () => {
   const [year, setYear] = useState("");
 
   const [ccv1, setCcv] = useState("");
+
+  const [usern, setUser] = useState({});
   // function setExpiration(e) {
   //   console.log(e);
   // }
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  useEffect(() => {
+    users.forEach((elem) => {
+      if (elem.email === user.email) setUser(elem);
+    });
+  }, [users]);
+
   function ccv(e) {
     document.querySelector(".flip").style = "transform: rotateY(180deg)";
     setCcv(e);
@@ -25,6 +45,23 @@ const Paymant = () => {
     }
   }
 
+  async function pay(e) {
+    e.preventDefault();
+    if (
+      !cardNum1 ||
+      !cardNum2 ||
+      !cardNum3 ||
+      !cardNum4 ||
+      !holder ||
+      !month ||
+      !year ||
+      !ccv1
+    ) {
+      return;
+    }
+    changeStatus(usern.id);
+    navigate(`/post-details/${params.id}`);
+  }
   return (
     <>
       <div className="checkout">
@@ -212,7 +249,7 @@ const Paymant = () => {
               onChange={(e) => ccv(e.target.value)}
             />
           </fieldset>
-          <button className="btn">
+          <button onClick={pay} className="btn">
             <i className="fa fa-lock"></i> submit
           </button>
         </form>

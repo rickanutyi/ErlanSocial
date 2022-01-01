@@ -28,6 +28,9 @@
     text-align: center;
     h2 {
       font-family: sans-serif;
+      @media all and(max-width: 500px) {
+        font-size: 1.3rem;
+      }
     }
   }
   .author {

@@ -40,5 +40,8 @@
 .chat .chat_actions button {
   width: 30%;
   height: 60px;
+  background-color: #37c237;
+  border: none;
+  font-size: 1.4rem;
 }
 /*# sourceMappingURL=Chat.css.map */

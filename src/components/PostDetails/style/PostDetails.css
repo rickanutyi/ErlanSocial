@@ -3,12 +3,18 @@
 }
 
 .details .details_content {
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 50px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #fff;
+}
+
+@media all and (max-width: 500px) {
+  .details .details_content {
+    padding: 10px;
+  }
 }
 
 .details .details_content .details-flex {
@@ -21,6 +27,12 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 30px;
+}
+
+@media all and (max-width: 500px) {
+  .details .details_content .details-flex .details_titl {
+    font-size: 1rem;
+  }
 }
 
 .details .details_content .details-flex div {

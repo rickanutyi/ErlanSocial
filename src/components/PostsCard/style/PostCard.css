@@ -47,6 +47,12 @@
   font-family: sans-serif;
 }
 
+@media all and (max-width: 500px) {
+  .post_card .card_title h2 {
+    font-size: 1.3rem;
+  }
+}
+
 .post_card .author {
   justify-self: flex-start;
   padding: 6px;

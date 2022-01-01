@@ -19,7 +19,6 @@ import Chat from "./components/Chat/Chat";
 import Menu from "./components/Menu/Menu";
 import SideBar from "./components/SideBar/SideBar";
 import AdvertisingCard from "./components/AdvertisingCard/AdvertisingCard";
-import Bot from "./Bot";
 import Paymant from "./components/Paymant/Paymant";
 
 function MainRoutes() {
@@ -45,7 +44,7 @@ function MainRoutes() {
               <Route path="/side-bar" element={<SideBar />} />
               <Route path="/reclam" element={<AdvertisingCard />} />
               {/* <Route path="/bot" element={<Bot />} /> */}
-              <Route path="/paymant" element={<Paymant />} />
+              <Route path="/paymant/:id" element={<Paymant />} />
             </Routes>
           </BrowserRouter>
         </UsersContextProvider>

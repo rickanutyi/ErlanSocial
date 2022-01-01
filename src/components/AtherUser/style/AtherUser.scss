@@ -17,6 +17,10 @@
       border: 1px solid black;
       overflow: hidden;
       text-align: center;
+      @media all and (max-width: 475px) {
+        width: 130px;
+        height: 130px;
+      }
       img {
         height: 100%;
         width: 100%;

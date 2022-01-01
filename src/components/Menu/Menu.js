@@ -27,7 +27,7 @@ const Menu = ({ setOpen }) => {
   }, [users]);
 
   function goPage() {
-    navigate(`/user-page/${usern.id}`);
+    navigate(`/user-page/posts`);
     setOpen(false);
   }
 

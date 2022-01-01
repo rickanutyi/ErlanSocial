@@ -1,10 +1,10 @@
 .reclam {
   width: 682px;
-  height: 500px;
+  // height: 500px;
   position: relative;
   overflow: hidden;
-  color: rgb(246, 252, 246);
-
+  color: rgb(8, 8, 8);
+  box-shadow: 1px 1px 10px black;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -18,16 +18,33 @@
     font-size: 1.6rem;
   }
   .reclam_image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    img {
-      width: 100%;
+    color: black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    span {
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: block;
+      box-sizing: content-box;
+      position: relative;
+      &::after {
+        content: "";
+        width: 100%;
+        position: absolute;
+        height: 1px;
+        background-color: black;
+        transform: scale(0);
+        bottom: 0;
+        right: 0;
+        left: 0;
+        transform-origin: left;
+        transition: 240ms;
+      }
+      &:hover::after {
+        transform: scale(1);
+        // transform-origin: right;
+      }
     }
   }
 }

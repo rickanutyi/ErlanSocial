@@ -1,9 +1,10 @@
 .reclam {
   width: 682px;
-  height: 500px;
   position: relative;
   overflow: hidden;
-  color: #f6fcf6;
+  color: #080808;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,17 +28,46 @@
 }
 
 .reclam .reclam_image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
-.reclam .reclam_image img {
+.reclam .reclam_image span {
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: block;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  position: relative;
+}
+
+.reclam .reclam_image span::after {
+  content: "";
   width: 100%;
+  position: absolute;
+  height: 1px;
+  background-color: black;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: 240ms;
+  transition: 240ms;
+}
+
+.reclam .reclam_image span:hover::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 /*# sourceMappingURL=AdvertisingCard.css.map */

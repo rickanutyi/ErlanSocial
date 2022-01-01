@@ -129,6 +129,13 @@ const UsersContextProvider = ({ children }) => {
       });
     });
   }
+  //change status
+  async function changeStatus(uid) {
+    let userRef = doc(db, "users", `${uid}`);
+    updateDoc(userRef, {
+      premium: true,
+    });
+  }
   const values = {
     users: state.users,
     getUsers,
@@ -141,6 +148,7 @@ const UsersContextProvider = ({ children }) => {
     getChat,
     chat: state.chat,
     subToTag,
+    changeStatus,
   };
 
   return (

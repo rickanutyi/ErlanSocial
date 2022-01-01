@@ -49,6 +49,13 @@
   overflow: hidden;
 }
 
+@media all and (max-width: 400px) {
+  .user_page .user_content .about_user .avatar .user_photo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
 .user_page .user_content .about_user .avatar .user_photo img {
   height: 100%;
   width: 100%;
@@ -61,6 +68,13 @@
 .user_page .user_content .about_user .avatar .user_name {
   font-size: 2rem;
   font-weight: 800;
+}
+
+@media all and (max-width: 400px) {
+  .user_page .user_content .about_user .avatar .user_name {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
 }
 
 .user_page .user_content .about_user .user_action {
@@ -76,6 +90,12 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   gap: 10px;
+}
+
+@media all and (max-width: 500px) {
+  .user_page .user_content .about_user .user_action .actions {
+    gap: 2px;
+  }
 }
 
 .user_page .user_content .about_user .user_action .actions .create_post-btn {
@@ -96,6 +116,13 @@
   color: blue;
   cursor: pointer;
   background-color: #fff;
+}
+
+@media all and (max-width: 500px) {
+  .user_page .user_content .about_user .user_action .actions .create_post-btn {
+    font-size: 1rem;
+    font-weight: 600;
+  }
 }
 
 .user_page .user_content .about_user .user_action .actions .settings {
@@ -138,6 +165,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .user_page .user_content .user_menu a {

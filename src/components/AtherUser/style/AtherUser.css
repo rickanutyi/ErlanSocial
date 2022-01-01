@@ -29,6 +29,13 @@
   text-align: center;
 }
 
+@media all and (max-width: 475px) {
+  .ather_user-left .ather_user_avatar {
+    width: 130px;
+    height: 130px;
+  }
+}
+
 .ather_user-left .ather_user_avatar img {
   height: 100%;
   width: 100%;
