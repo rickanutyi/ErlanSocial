@@ -55,8 +55,30 @@
 }
 
 .update_user .save_updates button {
+  background-color: #fff;
   width: 50%;
   padding: 0 10px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  border: none;
+  position: relative;
+}
+
+.update_user .save_updates button:hover::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.update_user .save_updates button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  background-color: black;
+  -webkit-transition: 222ms;
+  transition: 222ms;
 }
 /*# sourceMappingURL=UpdateUser.css.map */

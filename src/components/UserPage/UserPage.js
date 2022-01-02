@@ -70,7 +70,9 @@ const UserPage = () => {
               {userm.name ? userm.name : userm.email}
             </div>
             <div className="user_date">в стае с {userm ? userm.date : "w"}</div>
-            <span onClick={out}>выйти</span>
+            <span className="out" onClick={out}>
+              выйти
+            </span>
           </div>
           <div className="user_action">
             <div className="actions">

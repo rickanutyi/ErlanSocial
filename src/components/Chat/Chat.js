@@ -26,6 +26,7 @@ const Chat = () => {
   }, [users]);
 
   async function sandMessage() {
+    if (!text.trim()) return;
     let data = await addDoc(collection(db, "chat"), {
       email: usern.email,
       sender: usern.name ? usern.name : usern.email,

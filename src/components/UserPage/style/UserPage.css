@@ -77,6 +77,13 @@
   }
 }
 
+.user_page .user_content .about_user .avatar .out {
+  font-size: 1.4rem;
+  cursor: pointer;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
 .user_page .user_content .about_user .user_action {
   width: 50%;
 }

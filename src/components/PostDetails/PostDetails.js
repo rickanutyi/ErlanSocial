@@ -8,7 +8,8 @@ import "./style/PostDetails.css";
 import AdvertisingCard from "../AdvertisingCard/AdvertisingCard";
 
 const PostDetails = () => {
-  const { getCurrentPost, currentPost, updatePost } = useContext(postsContext);
+  const { getCurrentPost, currentPost, updatePost, getSamePosts, samePosts } =
+    useContext(postsContext);
   const { users, getUsers } = useContext(usersContext);
   const { user } = useAuth();
   const [message, setMessage] = useState("");
@@ -30,6 +31,9 @@ const PostDetails = () => {
     });
   }, [users]);
 
+  useEffect(() => {
+    getSamePosts(currentPost[0] ? currentPost[0].tags : null);
+  }, [currentPost]);
   function createComment() {
     let comment = {
       userAvatar: usern.avatar ? usern.avatar : null,
@@ -44,10 +48,25 @@ const PostDetails = () => {
     updatePost(comments, currentPost[0].id);
     setMessage("");
   }
+  // console.log(samePosts);
+  // console.log(currentPost[0].tags);
   return (
     <div className="details">
       <div className="details_content">
         <div className="details-flex">
+          <div className="recom">
+            <span className="recom_title">Похожие статьи</span>
+            {samePosts
+              ? samePosts.map((elem) => (
+                  <div
+                    onClick={() => navigate(`/post-details/${elem.id}`)}
+                    className="same_posts"
+                  >
+                    {elem.title}
+                  </div>
+                ))
+              : null}
+          </div>
           <div className="post_date">
             {currentPost[0] ? currentPost[0].date : "loading"}
           </div>
