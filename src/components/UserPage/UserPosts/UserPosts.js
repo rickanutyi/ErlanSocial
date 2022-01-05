@@ -17,6 +17,7 @@ const UserPosts = ({ usern }) => {
     let sortPOsts = usersPosts.sort((a, b) => b.date2 - a.date2);
     setPosts(sortPOsts);
   }, [usersPosts]);
+
   return (
     <div className="user_posts">
       {posts ? (

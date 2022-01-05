@@ -6,4 +6,6 @@ export const GET_USERS_POSTS = "GET_USERS_POSTS";
 export const GET_CURRENT_POST = "GET_CURRENT_POST";
 export const GET_CHAT = "GET_CHAT";
 export const GET_SAME_POSTS = "GET_SAME_POSTS";
+export const GET_MAIN_USER = "GET_MAIN_USER";
+export const GET_DIRECT = "GET_DIRECT";
 export const token = "5052672012:AAGaLo_LK0d34Y-iusDrnivZe8Vdgi6zaFQ";

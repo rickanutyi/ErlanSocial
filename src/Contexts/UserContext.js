@@ -7,8 +7,15 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import React, { createContext, useReducer } from "react";
-import { GET_CHAT, GET_THIS_USER, GET_USERS } from "../conts/const";
+import {
+  GET_CHAT,
+  GET_DIRECT,
+  GET_MAIN_USER,
+  GET_THIS_USER,
+  GET_USERS,
+} from "../conts/const";
 import { db } from "../firebase";
+import { useAuth } from "./AuthContext";
 
 export const usersContext = createContext();
 
@@ -16,6 +23,8 @@ const INIT_STATE = {
   users: [],
   thisUser: {},
   chat: [],
+  mainUser: {},
+  direct: {},
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -26,6 +35,10 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, thisUser: action.payload };
     case GET_CHAT:
       return { ...state, chat: action.payload };
+    case GET_MAIN_USER:
+      return { ...state, mainUser: action.payload };
+    case GET_DIRECT:
+      return { ...state, direct: action.payload };
     default:
       return state;
   }
@@ -33,8 +46,10 @@ const reducer = (state = INIT_STATE, action) => {
 
 const UsersContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const { user } = useAuth();
   const q = query(collection(db, "users"));
   const qm = query(collection(db, "chat"));
+  const qmes = query(collection(db, "messages"));
 
   function getUsers() {
     ////////////////////////////////////get users
@@ -136,6 +151,53 @@ const UsersContextProvider = ({ children }) => {
       premium: true,
     });
   }
+  //
+  async function getMainUser() {
+    // getUsers();
+
+    state.users.forEach((elem) => {
+      if (elem.email === user.email) {
+        dispatch({
+          type: GET_MAIN_USER,
+          payload: elem,
+        });
+      }
+    });
+  }
+  //get direct
+
+  async function getDirect(id) {
+    // const docRef = doc(db, "messages", `${id}`);
+    // const docSnap = await getDoc(docRef);
+    // console.log(docSnap.data());
+    // dispatch({
+    //   type: GET_DIRECT,
+    //   payload: docSnap.data(),
+    // });
+
+    onSnapshot(qmes, (querySnapshot) => {
+      let direct = {};
+
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+        if (doc.id === id) {
+          direct = { ...doc.data() };
+        }
+      });
+      dispatch({
+        type: GET_DIRECT,
+        payload: direct,
+      });
+    });
+  }
+
+  async function sendMessage(id, dir) {
+    let userRef = doc(db, "messages", `${id}`);
+    updateDoc(userRef, {
+      direct: dir,
+    });
+  }
+
   const values = {
     users: state.users,
     getUsers,
@@ -149,6 +211,11 @@ const UsersContextProvider = ({ children }) => {
     chat: state.chat,
     subToTag,
     changeStatus,
+    getMainUser,
+    mainUser: state.mainUser,
+    getDirect,
+    direct: state.direct,
+    sendMessage,
   };
 
   return (

@@ -133,6 +133,15 @@ const PostsContextProvider = ({ children }) => {
       });
     });
   }
+  //delete comment
+  function deleteComment(post, id) {
+    let postRef = doc(db, "posts", `${post.id}`);
+    let commentss = post.comments.filter((elem) => elem.id !== id);
+    // console.log(commentss);
+    updateDoc(postRef, {
+      comments: commentss,
+    });
+  }
 
   const values = {
     addIdPost,
@@ -146,6 +155,7 @@ const PostsContextProvider = ({ children }) => {
     likePost,
     getSamePosts,
     samePosts: state.samePosts,
+    deleteComment,
   };
   return (
     <postsContext.Provider value={values}>{children}</postsContext.Provider>

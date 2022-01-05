@@ -28,7 +28,7 @@
           cursor: pointer;
           transition: 240ms;
           padding: 2px;
-          border-radius: 6pxЛЩ;
+          border-radius: 6pxлщ;
           border: 1px solid rgba(0, 0, 0, 0.1);
           &:hover {
             color: rgba(0, 0, 0, 0.4);
@@ -51,6 +51,7 @@
     .post_comments {
       .ab_user {
         cursor: pointer;
+        margin: 5px;
       }
       > span {
         width: 100%;
@@ -75,6 +76,14 @@
           }
         }
       }
+    }
+    .comment_action {
+      padding: 4px;
+      display: inline-block;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      color: rgba(22, 130, 192, 1);
     }
   }
 }

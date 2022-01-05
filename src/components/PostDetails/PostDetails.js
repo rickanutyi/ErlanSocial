@@ -8,8 +8,14 @@ import "./style/PostDetails.css";
 import AdvertisingCard from "../AdvertisingCard/AdvertisingCard";
 
 const PostDetails = () => {
-  const { getCurrentPost, currentPost, updatePost, getSamePosts, samePosts } =
-    useContext(postsContext);
+  const {
+    getCurrentPost,
+    currentPost,
+    updatePost,
+    getSamePosts,
+    samePosts,
+    deleteComment,
+  } = useContext(postsContext);
   const { users, getUsers } = useContext(usersContext);
   const { user } = useAuth();
   const [message, setMessage] = useState("");
@@ -34,11 +40,13 @@ const PostDetails = () => {
   useEffect(() => {
     getSamePosts(currentPost[0] ? currentPost[0].tags : null);
   }, [currentPost]);
+  //
   function createComment() {
     let comment = {
       userAvatar: usern.avatar ? usern.avatar : null,
       user: usern.name ? usern.name : usern.email,
       comment: message,
+      id: Date.now(),
     };
     console.log(currentPost);
     let comments = [...currentPost[0].comments];
@@ -98,18 +106,31 @@ const PostDetails = () => {
         <hr />
         {currentPost[0]
           ? currentPost[0].comments.map((elem) => (
-              <div key={elem.comment} className="post_comments">
-                <span className="ab_user">
-                  <span className="user_avatar_comment">
-                    <img
-                      src={elem.userAvatar ? elem.userAvatar : null}
-                      alt=""
-                    />
+              <>
+                <div key={elem.comment} className="post_comments">
+                  <span className="ab_user">
+                    <span className="user_avatar_comment">
+                      <img
+                        src={elem.userAvatar ? elem.userAvatar : null}
+                        alt=""
+                      />
+                    </span>
+                    {elem.user}
                   </span>
-                  {elem.user}
-                </span>
-                <span>{elem.comment}</span>
-              </div>
+                  <span>{elem.comment}</span>
+                </div>
+                {elem.user == usern.name || usern.email === elem.user ? (
+                  <>
+                    <span
+                      onClick={() => deleteComment(currentPost[0], elem.id)}
+                      className="comment_action"
+                    >
+                      удалить
+                    </span>
+                    <span className="comment_action">изменить</span>
+                  </>
+                ) : null}
+              </>
             ))
           : "нет комментариев"}
         <PostComments

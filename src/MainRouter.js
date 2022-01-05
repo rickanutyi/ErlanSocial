@@ -23,8 +23,8 @@ import Paymant from "./components/Paymant/Paymant";
 
 function MainRoutes() {
   return (
-    <PostsContextProvider>
-      <AuthContextProvider>
+    <AuthContextProvider>
+      <PostsContextProvider>
         <UsersContextProvider>
           <BrowserRouter>
             <Header />
@@ -32,8 +32,8 @@ function MainRoutes() {
               <Route path="/Login" element={<Login />} />
               <Route path="/*" element={<Home />} />
               <Route path="/user-page/*" element={<UserPage />} />
-              <Route path="/send-message/:id" element={<SendMessage />} />
-              <Route path="/ather-user/:id" element={<AtherUser />} />
+              <Route path="/send-message/:id/:chat" element={<SendMessage />} />
+              <Route path="/ather-user/:id/" element={<AtherUser />} />
               <Route path="/update-user" element={<UpdateUser />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/post-card" element={<PostsCard />} />
@@ -48,8 +48,8 @@ function MainRoutes() {
             </Routes>
           </BrowserRouter>
         </UsersContextProvider>
-      </AuthContextProvider>
-    </PostsContextProvider>
+      </PostsContextProvider>
+    </AuthContextProvider>
   );
 }
 export default MainRoutes;
