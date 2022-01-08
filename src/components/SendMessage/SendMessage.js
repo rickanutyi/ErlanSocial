@@ -23,24 +23,26 @@ const SendMessage = () => {
   const params = useParams();
 
   useEffect(() => {
-    getThisUser(params.id);
-    getMainUser();
+    getMainUser(user.email);
   }, []);
   console.log(params);
 
-  useEffect(async () => {
+  useEffect(() => {
     getDirect(params.chat);
-  }, []);
+  }, [params.chat]);
 
   useEffect(() => {
     setDirection(direct.direct);
-  }, [direct]);
-  console.log(direction);
+  }, [direct, params.chat]);
 
   function createMessage() {
+    if (!message) {
+      return;
+    }
     let newMessage = [...direction];
     let mesObj = {
       sender: user.email,
+      senderAvatar: mainUser.avatar,
       date: Date.now(),
       isRead: false,
       message: message,
@@ -49,6 +51,19 @@ const SendMessage = () => {
     newMessage.push(mesObj);
     sendMessage(params.chat, newMessage);
   }
+
+  // let flag = false;
+
+  // for (let i = 0; i < mainUser.chats.length; i++) {
+  //   for (let j = 0; j < thisUser.chats.length; j++) {
+  //     if (mainUser.chats[i] === thisUser.chats[j]) {
+  //       return (flag = true);
+  //     }
+  //   }
+  // }
+  // if (!flag) {
+  //   navigate("/hero");
+  // }
   //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   return (
@@ -67,14 +82,7 @@ const SendMessage = () => {
                 key={elem.id}
               >
                 <span className="sender_email">
-                  <img
-                    src={
-                      elem.sender === mainUser.email
-                        ? mainUser.avatar
-                        : thisUser.avatar
-                    }
-                    alt=""
-                  />
+                  <img src={elem.senderAvatar} alt="" />
                   {elem.sender}
                 </span>
                 <br />

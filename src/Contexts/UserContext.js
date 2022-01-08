@@ -2,14 +2,17 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   onSnapshot,
   query,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import React, { createContext, useReducer } from "react";
 import {
   GET_CHAT,
   GET_DIRECT,
+  GET_DIRECTS,
   GET_MAIN_USER,
   GET_THIS_USER,
   GET_USERS,
@@ -25,6 +28,7 @@ const INIT_STATE = {
   chat: [],
   mainUser: {},
   direct: {},
+  directs: [],
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -39,6 +43,8 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, mainUser: action.payload };
     case GET_DIRECT:
       return { ...state, direct: action.payload };
+    case GET_DIRECTS:
+      return { ...state, directs: action.payload };
     default:
       return state;
   }
@@ -152,32 +158,35 @@ const UsersContextProvider = ({ children }) => {
     });
   }
   //
-  async function getMainUser() {
+  async function getMainUser(email = user.email) {
     // getUsers();
 
-    state.users.forEach((elem) => {
-      if (elem.email === user.email) {
-        dispatch({
-          type: GET_MAIN_USER,
-          payload: elem,
-        });
-      }
+    // state.users.forEach((elem) => {
+    //   if (elem.email === user.email) {
+    //     dispatch({
+    //       type: GET_MAIN_USER,
+    //       payload: elem,
+    //     });
+    //   }
+    // });
+    console.log(2222);
+    const q = query(collection(db, "users"), where("email", "==", `${email}`));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      dispatch({
+        type: GET_MAIN_USER,
+        payload: doc.data(),
+      });
     });
   }
   //get direct
 
   async function getDirect(id) {
-    // const docRef = doc(db, "messages", `${id}`);
-    // const docSnap = await getDoc(docRef);
-    // console.log(docSnap.data());
-    // dispatch({
-    //   type: GET_DIRECT,
-    //   payload: docSnap.data(),
-    // });
-
     onSnapshot(qmes, (querySnapshot) => {
       let direct = {};
-
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
         if (doc.id === id) {
@@ -190,14 +199,28 @@ const UsersContextProvider = ({ children }) => {
       });
     });
   }
+  //ddddddddddddddddddddddddddddddddddddddddddddddd
+  function getChats() {
+    let chats = [];
+    onSnapshot(qmes, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        chats.push({ ...doc.data(), id: doc.id });
+      });
+    });
 
+    dispatch({
+      type: GET_DIRECTS,
+      payload: chats,
+    });
+  }
+  //ddddddddddddddddddddddddddddddddddddddddddddddddd
   async function sendMessage(id, dir) {
     let userRef = doc(db, "messages", `${id}`);
     updateDoc(userRef, {
       direct: dir,
     });
   }
-
+  //ddddddddddddddddddddddddddddddddddddddddddddddddd
   const values = {
     users: state.users,
     getUsers,
@@ -216,6 +239,8 @@ const UsersContextProvider = ({ children }) => {
     getDirect,
     direct: state.direct,
     sendMessage,
+    getChats,
+    directs: state.directs,
   };
 
   return (

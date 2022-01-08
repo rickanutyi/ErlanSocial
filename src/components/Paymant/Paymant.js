@@ -7,7 +7,7 @@ import { usersContext } from "../../Contexts/UserContext";
 import "./Paymant.css";
 
 const Paymant = () => {
-  const { changeStatus, users, getUsers } = useContext(usersContext);
+  const { changeStatus, getMainUser, mainUser } = useContext(usersContext);
   const { user } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
@@ -28,14 +28,14 @@ const Paymant = () => {
   //   console.log(e);
   // }
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
   }, []);
 
-  useEffect(() => {
-    users.forEach((elem) => {
-      if (elem.email === user.email) setUser(elem);
-    });
-  }, [users]);
+  // useEffect(() => {
+  //   users.forEach((elem) => {
+  //     if (elem.email === user.email) setUser(elem);
+  //   });
+  // }, [users]);
 
   function ccv(e) {
     document.querySelector(".flip").style = "transform: rotateY(180deg)";
@@ -59,7 +59,7 @@ const Paymant = () => {
     ) {
       return;
     }
-    changeStatus(usern.id);
+    changeStatus(mainUser.id);
     navigate(`/post-details/${params.id}`);
   }
   return (

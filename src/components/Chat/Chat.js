@@ -1,5 +1,11 @@
 import { addDoc, collection } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import { useAuth } from "../../Contexts/AuthContext";
 import { usersContext } from "../../Contexts/UserContext";
 import { db } from "../../firebase";
@@ -7,15 +13,25 @@ import "./style/Chat.css";
 
 const Chat = () => {
   const { user } = useAuth();
-  const { users, getUsers, getChat, chat } = useContext(usersContext);
+  const { users, getUsers, getChat, chat, getMainUser, mainUser } =
+    useContext(usersContext);
 
   const [usern, setUser] = useState({});
   const [text, setText] = useState("");
+  const ref = useRef(null);
 
+  const scroll = (x) => {
+    ref.current.scrollTop = 10000;
+  };
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
     getChat();
+    ref.current.scrollTop = 10000;
   }, []);
+
+  // useEffect(() => {
+  //   ref.scrollTop();
+  // }, []);
 
   useEffect(() => {
     users.forEach((elem) => {
@@ -28,27 +44,28 @@ const Chat = () => {
   async function sandMessage() {
     if (!text.trim()) return;
     let data = await addDoc(collection(db, "chat"), {
-      email: usern.email,
-      sender: usern.name ? usern.name : usern.email,
+      email: mainUser.email,
+      sender: mainUser.name ? mainUser.name : mainUser.email,
       date: Date.now(),
       message: text,
-      image: usern.avatar,
+      image: mainUser.avatar,
     });
-    console.log(chat);
+    scroll(300);
+    setText("");
   }
 
   let chat2 = chat.sort((a, b) => a.date - b.date);
   return (
     <div className="chat">
-      <div className="chat_content">
+      <div ref={ref} className="chat_content">
         {chat
           ? chat.map((elem) => (
               <div
                 key={elem.id}
                 style={{
-                  textAlign: usern.email === elem.email ? "right" : "left",
+                  textAlign: mainUser.email === elem.email ? "right" : "left",
                   alignSelf:
-                    usern.email === elem.email ? "flex-end" : "flex-start",
+                    mainUser.email === elem.email ? "flex-end" : "flex-start",
                   backgroundColor: "rgba(0,0,0,0.1)",
                   padding: "10px",
                   borderRadius: "10px",
@@ -87,10 +104,21 @@ const Chat = () => {
               </div>
             ))
           : null}
+        <span id="scroll"></span>
       </div>
       <div className="chat_actions">
-        <input onChange={(e) => setText(e.target.value)} type="text" />
-        <button onClick={sandMessage}>sand</button>
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          type="text"
+        />
+        <button
+          onClick={() => {
+            sandMessage();
+          }}
+        >
+          sand
+        </button>
       </div>
     </div>
   );

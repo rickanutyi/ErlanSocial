@@ -14,39 +14,26 @@ import Subscriptions from "./Subscriptions/Subscriptions";
 
 const UserPage = () => {
   const { user, handleLogOut } = useAuth();
-  const { getThisUser, thisUser, users, getUsers } = useContext(usersContext);
+  const { getMainUser, mainUser } = useContext(usersContext);
   // const {getUsersPosts,usersPosts} = useContext(postsContext)
 
   const navigate = useNavigate();
-  const params = useParams();
-
-  const [userm, setUser] = useState({});
 
   let span = document.querySelectorAll(".inactive");
   //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   function changeStatus(e) {
     span.forEach((elem) => {
       elem.classList.remove("active");
-      // console.log(elem.parentElement)
     });
-    // e.currentTarget.parentNode.classList.add('active')
     e.currentTarget.classList.add("active");
-    // console.log(e.currentTarget.parentNode)
   }
   //*!;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
   }, []);
-  //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  useEffect(() => {
-    users.forEach((elem) => {
-      if (elem.email === user.email) {
-        setUser(elem);
-      }
-    });
-  }, [users]);
-  //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  console.log(mainUser);
   //;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   function out() {
     localStorage.removeItem("userID");
@@ -60,16 +47,18 @@ const UserPage = () => {
         <div className="about_user">
           <div className="avatar">
             <div className="user_photo">
-              {userm.avatar ? (
-                <img src={userm.avatar} alt="avatar" />
+              {mainUser.avatar ? (
+                <img src={mainUser.avatar} alt="avatar" />
               ) : (
                 <img src={Monster} alt="avatar" />
               )}
             </div>
             <div className="user_name">
-              {userm.name ? userm.name : userm.email}
+              {mainUser.name ? mainUser.name : mainUser.email}
             </div>
-            <div className="user_date">в стае с {userm ? userm.date : "w"}</div>
+            <div className="user_date">
+              в стае с {mainUser ? mainUser.date : "w"}
+            </div>
             <span className="out" onClick={out}>
               выйти
             </span>
@@ -123,10 +112,13 @@ const UserPage = () => {
         </div>
       </div>
       <Routes>
-        <Route path="posts" element={<UserPosts usern={userm} />} />
-        <Route path="saved" element={<Saved usern={userm} />} />
+        <Route path="posts" element={<UserPosts usern={mainUser} />} />
+        <Route path="saved" element={<Saved usern={mainUser} />} />
         <Route path="messages" element={<Messages />} />
-        <Route path="subscriptions" element={<Subscriptions usern={userm} />} />
+        <Route
+          path="subscriptions"
+          element={<Subscriptions usern={mainUser} />}
+        />
       </Routes>
     </div>
   );

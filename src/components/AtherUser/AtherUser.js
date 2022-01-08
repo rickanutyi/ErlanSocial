@@ -5,18 +5,20 @@ import "./style/AtherUser.css";
 import UserPosts from "../UserPage/UserPosts/UserPosts";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useAuth } from "../../Contexts/AuthContext";
 
 const AtherUser = () => {
   const { getThisUser, thisUser, getMainUser, mainUser } =
     useContext(usersContext);
-  const [user, setUser] = useState({});
+  const { user } = useAuth();
+  const [user1, setUser] = useState({});
 
   const navigate = useNavigate();
 
   const params = useParams();
   useEffect(() => {
-    getMainUser();
-  }, []);
+    getMainUser(user.email);
+  }, [user]);
   useEffect(() => {
     setUser(mainUser);
   }, [mainUser]);
@@ -39,6 +41,8 @@ const AtherUser = () => {
     }
     let data = await addDoc(collection(db, "messages"), {
       direct: [],
+      users: [thisUser.email, mainUser.email],
+      usersId: [thisUser.id, mainUser.id],
     });
     let chats = [...mainUser.chats];
     chats.push(data.id);
@@ -73,7 +77,7 @@ const AtherUser = () => {
           <span className="send_message">написать</span>
         </div>
       </div>
-      <UserPosts usern={thisUser} mainUser={user} />
+      <UserPosts usern={thisUser} mainUser={user1} />
     </>
   );
 };

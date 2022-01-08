@@ -5,31 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { postsContext } from "../../../../Contexts/PostsContext";
 import { usersContext } from "../../../../Contexts/UserContext";
 import { db, storage } from "../../../../firebase";
-import { getUserId } from "../../../Auth/saveThisUser";
 import { useAuth } from "../../../../Contexts/AuthContext";
 import "./style/CreatePost.css";
-import Avatar from "../../../../images/icons/author-icon.png";
 
 const CreatePost = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postText, setPostText] = useState("");
   const [usern, setUser] = useState({});
-  const { getThisUser, thisUser, users, getUsers } = useContext(usersContext);
+  const { getMainUser, mainUser } = useContext(usersContext);
   const { user } = useAuth();
   const { addIdPost } = useContext(postsContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
   }, []);
-  useEffect(() => {
-    users.forEach((elem) => {
-      if (elem.email === user.email) {
-        setUser(elem);
-      }
-    });
-  }, [users]);
+  // useEffect(() => {
+  //   users.forEach((elem) => {
+  //     if (elem.email === user.email) {
+  //       setUser(elem);
+  //     }
+  //   });
+  // }, [users]);
 
   const checkbox = document.querySelectorAll(".tagsinp");
   const createPost = async () => {
@@ -62,18 +60,18 @@ const CreatePost = () => {
           text: postText,
           tags: tags2,
           image: res,
-          author: usern.name ? usern.name : usern.email,
-          authorId: usern.id,
+          author: mainUser.name ? mainUser.name : mainUser.email,
+          authorId: mainUser.id,
           date: today,
           comments: [],
           likes: [],
-          authorAvatar: usern.avatar ? usern.avatar : null,
+          authorAvatar: mainUser.avatar ? mainUser.avatar : null,
           date2: Date.now(),
         });
         addIdPost(data.id);
       });
     });
-    navigate("/user-page");
+    navigate("/user-page/posts");
   };
   return (
     <div className="create_post">

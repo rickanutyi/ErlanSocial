@@ -9,22 +9,20 @@ import { useNavigate } from "react-router-dom";
 
 const Menu = ({ setOpen }) => {
   const { user } = useAuth();
-  const { users, getUsers } = useContext(usersContext);
-
-  const [usern, setUser] = useState({});
+  const { getMainUser, mainUser } = useContext(usersContext);
 
   const navigate = useNavigate();
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
   }, []);
 
-  useEffect(() => {
-    users.forEach((elem) => {
-      if (elem.email === user.email) {
-        setUser(elem);
-      }
-    });
-  }, [users]);
+  // useEffect(() => {
+  //   users.forEach((elem) => {
+  //     if (elem.email === user.email) {
+  //       setUser(elem);
+  //     }
+  //   });
+  // }, [users]);
 
   function goPage() {
     navigate(`/user-page/posts`);
@@ -36,7 +34,11 @@ const Menu = ({ setOpen }) => {
     <div className="menu">
       <div className="user-menu">
         <span>
-          <img onClick={goPage} src={usern ? usern.avatar : null} alt="" />
+          <img
+            onClick={goPage}
+            src={mainUser ? mainUser.avatar : null}
+            alt=""
+          />
         </span>
       </div>
       <div className="side">

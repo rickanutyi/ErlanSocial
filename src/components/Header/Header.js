@@ -11,7 +11,8 @@ import Menu from "../Menu/Menu";
 
 const Header = () => {
   const { user, handleLogOut } = useAuth();
-  const { thisUser, getThisUser, getUsers, users } = useContext(usersContext);
+  const { thisUser, getThisUser, getMainUser, mainUser } =
+    useContext(usersContext);
   const navigate = useNavigate();
   const [userm, setUser] = useState({});
   const [searching, setSearching] = useState("");
@@ -19,18 +20,18 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    getUsers();
+    getMainUser(user.email);
     setOpen(false);
   }, []);
-  useEffect(() => {
-    if (!user) return;
-    users.forEach((elem) => {
-      if (elem.email === user.email) {
-        setUser(elem);
-        // console.log(elem)
-      }
-    });
-  }, [users]);
+  // useEffect(() => {
+  //   if (!user) return;
+  //   users.forEach((elem) => {
+  //     if (elem.email === user.email) {
+  //       setUser(elem);
+  //       // console.log(elem)
+  //     }
+  //   });
+  // }, [users]);
 
   function openMenu() {
     document.querySelector(".menu-item").classList.toggle("bg-menu-active");
@@ -73,7 +74,7 @@ const Header = () => {
                 onClick={() => navigate("/user-page/posts")}
                 className="header_avatar"
               >
-                <img src={userm ? userm.avatar : null} alt="" />
+                <img src={mainUser ? mainUser.avatar : null} alt="" />
               </div>
             </div>
           ) : (

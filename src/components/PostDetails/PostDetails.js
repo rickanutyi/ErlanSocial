@@ -16,7 +16,7 @@ const PostDetails = () => {
     samePosts,
     deleteComment,
   } = useContext(postsContext);
-  const { users, getUsers } = useContext(usersContext);
+  const { mainUser, getMainUser } = useContext(usersContext);
   const { user } = useAuth();
   const [message, setMessage] = useState("");
   const [usern, setUser] = useState({});
@@ -26,16 +26,16 @@ const PostDetails = () => {
 
   useEffect(() => {
     getCurrentPost(params);
-    getUsers();
+    getMainUser(user.email);
   }, [params]);
 
-  useEffect(() => {
-    users.forEach((elem) => {
-      if (elem.email === user.email) {
-        setUser(elem);
-      }
-    });
-  }, [users]);
+  // useEffect(() => {
+  //   users.forEach((elem) => {
+  //     if (elem.email === user.email) {
+  //       setUser(elem);
+  //     }
+  //   });
+  // }, [users]);
 
   useEffect(() => {
     getSamePosts(currentPost[0] ? currentPost[0].tags : null);
@@ -43,8 +43,8 @@ const PostDetails = () => {
   //
   function createComment() {
     let comment = {
-      userAvatar: usern.avatar ? usern.avatar : null,
-      user: usern.name ? usern.name : usern.email,
+      userAvatar: mainUser.avatar ? mainUser.avatar : null,
+      user: mainUser.name ? mainUser.name : mainUser.email,
       comment: message,
       id: Date.now(),
     };
@@ -119,7 +119,7 @@ const PostDetails = () => {
                   </span>
                   <span>{elem.comment}</span>
                 </div>
-                {elem.user == usern.name || usern.email === elem.user ? (
+                {elem.user == mainUser.name || mainUser.email === elem.user ? (
                   <>
                     <span
                       onClick={() => deleteComment(currentPost[0], elem.id)}
