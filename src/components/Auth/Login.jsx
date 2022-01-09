@@ -6,8 +6,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import { usersContext } from "../../Contexts/UserContext";
 import { saveUserId } from "./saveThisUser";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const Login = () => {
   const {
@@ -20,10 +21,12 @@ const Login = () => {
     handleLogIn,
     email,
     password,
+    forgotPassword,
   } = useAuth();
 
   const { addIdUser } = useContext(usersContext);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   async function createUser() {
     if (!password || !email) return;
@@ -84,7 +87,9 @@ const Login = () => {
 
           <button onClick={login}>войти</button>
           <button onClick={createUser}>зарегистрироваться</button>
-          {user ? <p>{user.email}</p> : "loading"}
+          <button onClikc={() => navigate("/password")}>
+            <Link to="/password">забыли пароль?</Link>
+          </button>
         </div>
       </div>
     </div>

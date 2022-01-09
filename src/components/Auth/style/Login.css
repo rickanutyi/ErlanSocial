@@ -46,6 +46,12 @@
   position: relative;
 }
 
+@media all and (max-width: 500px) {
+  .login .login_card .auth_title {
+    display: none;
+  }
+}
+
 .login .login_card .auth_title img {
   position: absolute;
   top: 0;

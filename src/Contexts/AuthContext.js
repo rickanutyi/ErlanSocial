@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "@firebase/auth";
 import { getDoc } from "firebase/firestore";
 import React, {
@@ -68,6 +69,9 @@ const AuthContextProvider = ({ children }) => {
     });
   };
 
+  function forgotPassword(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
   const handleLogIn = () => {
     clearErrors();
     signInWithEmailAndPassword(auth, email, password)
@@ -147,6 +151,7 @@ const AuthContextProvider = ({ children }) => {
     handleLogOut,
     email,
     password,
+    forgotPassword,
   };
 
   return (

@@ -20,6 +20,7 @@ import Menu from "./components/Menu/Menu";
 import SideBar from "./components/SideBar/SideBar";
 import AdvertisingCard from "./components/AdvertisingCard/AdvertisingCard";
 import Paymant from "./components/Paymant/Paymant";
+import Password from "./components/Auth/Password";
 
 function MainRoutes() {
   return (
@@ -29,6 +30,7 @@ function MainRoutes() {
           <BrowserRouter>
             <Header />
             <Routes>
+              <Route path="/password" element={<Password />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/*" element={<Home />} />
               <Route path="/user-page/*" element={<UserPage />} />

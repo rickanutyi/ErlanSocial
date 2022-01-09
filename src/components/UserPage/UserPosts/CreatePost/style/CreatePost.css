@@ -18,10 +18,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 100%;
 }
 
 .create_post .create_post_form {
-  max-width: 1000px;
+  width: 90%;
   height: 500px;
   position: relative;
   display: -webkit-box;
@@ -74,8 +75,7 @@
 }
 
 .create_post .tags {
-  width: 1000px;
-  height: 40px;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -86,6 +86,8 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 20px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   background-color: #fff;
   border: none;
   border-radius: 20px;
