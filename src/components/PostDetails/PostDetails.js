@@ -36,7 +36,9 @@ const PostDetails = () => {
   //     }
   //   });
   // }, [users]);
-
+  useEffect(() => {
+    setUser(mainUser);
+  }, [mainUser]);
   useEffect(() => {
     getSamePosts(currentPost[0] ? currentPost[0].tags : null);
   }, [currentPost]);

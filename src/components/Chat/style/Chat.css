@@ -1,6 +1,6 @@
 .chat {
   width: 100%;
-  width: 1000px;
+  max-width: 1000px;
   height: calc(100vh - 70px);
   position: -webkit-sticky;
   position: sticky;

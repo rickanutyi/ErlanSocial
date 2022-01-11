@@ -48,6 +48,8 @@ const Login = () => {
       messages: [],
       saved: [],
       chats: [],
+      subscriptions: [],
+      name: "",
     });
     // console.log(data.id);
     handleSignUp();

@@ -6,24 +6,30 @@ import { postsContext } from "../../../Contexts/PostsContext";
 import { usersContext } from "../../../Contexts/UserContext";
 import "./Sub.css";
 
-const Subscriptions = ({ usern }) => {
+const Subscriptions = () => {
   const { posts, getPosts } = useContext(postsContext);
-  const { subToTag } = useContext(usersContext);
+  const { subToTag, getMainUser, mainUser } = useContext(usersContext);
   const [isSub, setisSub] = useState(true);
-
-  //   useEffect(()=>{
-  //       getPosts()
-  //   },[])
-
+  const [usern, setUser] = useState({});
+  useEffect(() => {
+    getMainUser();
+  }, []);
+  useEffect(() => {
+    setUser(mainUser);
+  }, [mainUser]);
   const subscribe = async (val) => {
     let [...subs] = usern.subscriptions;
     subs.push(val);
-    subToTag(usern.id, subs);
+    console.log(mainUser);
+    subToTag(mainUser.id, subs);
+    getMainUser();
   };
 
   const unsub = async (val) => {
     let subs = usern.subscriptions.filter((elem) => elem !== val);
+    console.log(subs);
     subToTag(usern.id, subs);
+    getMainUser();
   };
   return (
     <div className="subscriptions">

@@ -5,7 +5,7 @@ import { usersContext } from "../../../Contexts/UserContext";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../firebase";
 import { getUserId } from "../../Auth/saveThisUser";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../Contexts/AuthContext";
 
 const UpdateUser = () => {
@@ -13,7 +13,7 @@ const UpdateUser = () => {
   // const [userAvatar,setUserAvatar] = useState('')
   const [usern, setUser] = useState("");
   const { user, handleLogOut } = useAuth();
-
+  const navigate = useNavigate();
   // useEffect(()=>{
   //     getThisUser(getUserId())
 
@@ -43,11 +43,12 @@ const UpdateUser = () => {
       getDownloadURL(uploadTask.snapshot.ref).then((res) => {
         let changes = {
           img: res,
-          name: mainUser.name,
+          name: usern.name,
         };
         updateUser(mainUser.id, changes);
       });
     });
+    navigate("/user-page/posts");
   };
 
   return (

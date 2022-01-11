@@ -12,40 +12,46 @@ import Marketing from "../../images/icons/bullhorn.png";
 import Job from "../../images/icons/job.png";
 import { useNavigate } from "react-router-dom";
 
-const SideBar = ({ block }) => {
+const SideBar = ({ block, setOpen }) => {
   const navigate = useNavigate();
+  function goToMenu(val) {
+    navigate(val);
+    if (setOpen) {
+      setOpen(false);
+    }
+  }
   let style = { display: "block", textAlign: "center", width: "100%" };
   return (
     <div style={block ? style : null} className="side_bar-left">
       <ul className="side_bar-top">
-        <li onClick={() => navigate("popular")}>
+        <li onClick={() => goToMenu("popular")}>
           <img width="20px" src={Fire} alt="" /> Популярное
         </li>
-        <li onClick={() => navigate("fresh")}>
+        <li onClick={() => goToMenu("fresh")}>
           <img width="20px" src={Fresh} alt="" /> Свежее
         </li>
-        <li onClick={() => navigate("business")}>
+        <li onClick={() => goToMenu("business")}>
           <img width="20px" src={Business} alt="" /> Бизнес
         </li>
-        <li onClick={() => navigate("story")}>
+        <li onClick={() => goToMenu("story")}>
           <img width="20px" src={Book} alt="" /> Личная история
         </li>
-        <li onClick={() => navigate("tech")}>
+        <li onClick={() => goToMenu("tech")}>
           <img width="20px" src={Tech} alt="" /> Техника
         </li>
-        <li onClick={() => navigate("programming")}>
+        <li onClick={() => goToMenu("programming")}>
           <img width="20px" src={Proger} alt="" /> Программирование
         </li>
-        <li onClick={() => navigate("design")}>
+        <li onClick={() => goToMenu("design")}>
           <img width="20px" src={Design} alt="" /> Дизайн
         </li>
-        <li onClick={() => navigate("sport")}>
+        <li onClick={() => goToMenu("sport")}>
           <img width="20px" src={Sport} alt="" /> Спорт
         </li>
-        <li onClick={() => navigate("marketing")}>
+        <li onClick={() => goToMenu("marketing")}>
           <img width="20px" src={Marketing} alt="" /> Маркетинг
         </li>
-        <li onClick={() => navigate("job")}>
+        <li onClick={() => goToMenu("job")}>
           <img width="20px" src={Job} alt="" /> Работа
         </li>
       </ul>

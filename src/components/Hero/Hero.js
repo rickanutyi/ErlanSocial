@@ -14,6 +14,9 @@ const Hero = ({ usern }) => {
     getPosts();
     // getUsers()
   }, []);
+  useEffect(() => {
+    setPost(posts);
+  }, [posts]);
 
   useEffect(() => {
     try {

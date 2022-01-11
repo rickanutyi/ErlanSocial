@@ -42,7 +42,7 @@ const Menu = ({ setOpen }) => {
         </span>
       </div>
       <div className="side">
-        <SideBar block={display} />
+        <SideBar setOpen={setOpen} block={display} />
       </div>
     </div>
   );

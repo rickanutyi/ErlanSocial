@@ -28,7 +28,8 @@ const Chat = () => {
     getChat();
     ref.current.scrollTop = 10000;
   }, []);
-
+  console.log(ref);
+  console.log(document.querySelector(".chat_content"));
   // useEffect(() => {
   //   ref.scrollTop();
   // }, []);
@@ -72,7 +73,7 @@ const Chat = () => {
                   // display: "inline",
                   margin: "2px",
                   width: "50%",
-                  marginBottom: "50px",
+                  marginBottom: "20px",
                 }}
               >
                 <img

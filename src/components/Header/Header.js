@@ -8,11 +8,13 @@ import MainLogo from "../../images/image_3-removebg-preview.png";
 import Messages from "../../images/icons/messages.png";
 import SearchPost from "../searchPost/SearchPost";
 import Menu from "../Menu/Menu";
+import { postsContext } from "../../Contexts/PostsContext";
 
 const Header = () => {
   const { user, handleLogOut } = useAuth();
   const { thisUser, getThisUser, getMainUser, mainUser } =
     useContext(usersContext);
+  const { getPosts } = useContext(postsContext);
   const navigate = useNavigate();
   const [userm, setUser] = useState({});
   const [searching, setSearching] = useState("");
@@ -23,6 +25,10 @@ const Header = () => {
     getMainUser(user.email);
     setOpen(false);
   }, []);
+
+  useEffect(() => {
+    setUser(mainUser);
+  }, [mainUser]);
   // useEffect(() => {
   //   if (!user) return;
   //   users.forEach((elem) => {
@@ -32,6 +38,9 @@ const Header = () => {
   //     }
   //   });
   // }, [users]);
+  function mainPage() {
+    getPosts();
+  }
 
   function openMenu() {
     document.querySelector(".menu-item").classList.toggle("bg-menu-active");
@@ -44,7 +53,7 @@ const Header = () => {
       <div className="header_content">
         <div className="header-left">
           <Link to="hero">
-            <img src={MainLogo} alt="" />
+            <img onClik={mainPage} src={MainLogo} alt="" />
           </Link>
           <div className="searche">
             <input
@@ -74,7 +83,7 @@ const Header = () => {
                 onClick={() => navigate("/user-page/posts")}
                 className="header_avatar"
               >
-                <img src={mainUser ? mainUser.avatar : null} alt="" />
+                <img src={userm ? userm.avatar : null} alt="" />
               </div>
             </div>
           ) : (
